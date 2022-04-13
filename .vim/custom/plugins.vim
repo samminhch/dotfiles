@@ -64,11 +64,11 @@ endif
 " █▄▄ █▄█ █▄▄
 """"""""""""
 " extensions
-let g:coc_global_extensions = 
+let g:coc_global_extensions =
   \ [
   \  'coc-clangd',
-  \  'coc-java', 
-  \  'coc-pydocstring', 
+  \  'coc-java',
+  \  'coc-pydocstring',
   \  'coc-jedi',
   \  'coc-sh',
   \  'coc-markdownlint',
