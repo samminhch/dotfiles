@@ -117,3 +117,7 @@ export NVS_HOME="$HOME/.nvs"
 # Source files
 source ~/vars.sh
 source ~/utils.sh
+
+# fnm
+export PATH=/home/samminhch/.fnm:$PATH
+eval "`fnm env`"
