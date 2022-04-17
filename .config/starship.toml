@@ -1,5 +1,5 @@
-format = """$all
-$directory$character"""
+format = """$username$directory$git_branch \
+$character"""
 
 add_newline = false
 
@@ -18,3 +18,10 @@ disabled = true
 
 [cmd_duration]
 disabled = true
+
+[directory]
+truncation_symbol = ".../"
+format            = "[$path]($style)[$read_only]($read_only_style) "
+
+[username]
+show_always = true

@@ -9,4 +9,9 @@ alias cp="cp -i"                                    # Confirm before overwriting
 alias df='df -h'                                    # Human-readable sizes
 alias free='free -m'                                # Show sizes in MB
 alias gitu='git add . && git commit && git push'
-alias apt='nala'
+
+# replace apt with nala only if apt is installed
+if apt > /dev/null;
+then
+    alias apt='nala'
+fi
