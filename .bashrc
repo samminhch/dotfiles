@@ -121,3 +121,10 @@ source ~/utils.sh
 # fnm
 export PATH=/home/samminhch/.fnm:$PATH
 eval "`fnm env`"
+
+
+# Enable starship prompt
+if [ -e /usr/local/bin/starship ]
+then
+    eval "$(starship init bash)"
+fi

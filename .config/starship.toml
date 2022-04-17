@@ -1,5 +1,4 @@
-format = """$all\
-$git_branch$git_commit$git_state$git_status
+format = """$all
 $directory$character"""
 
 add_newline = false
