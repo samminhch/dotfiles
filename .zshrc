@@ -11,3 +11,7 @@ if [ -e /usr/local/bin/starship ]
 then
     eval "$(starship init zsh)"
 fi
+
+autoload bashcompinit
+bashcompinit
+source /usr/share/bash-completion/completions/*

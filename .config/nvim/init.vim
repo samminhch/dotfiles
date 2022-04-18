@@ -20,6 +20,8 @@ runtime custom/bindings.vim
 " █▀ █▄█ █▀ ▀█▀ █▀▀ █▀▄▀█
 " ▄█ ░█░ ▄█ ░█░ ██▄ █░▀░█
 """""""""""""""""""""""""
+" change leader key to '\'
+let mapleader = ' '
 " disable backup files
 set nobackup
 set nowritebackup

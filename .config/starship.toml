@@ -1,4 +1,4 @@
-format = """$username$directory$git_branch \
+format = """$username using $shell in $directory$git_branch\
 $character"""
 
 add_newline = false
@@ -11,6 +11,7 @@ vicmd_symbol   = "[V](bold green) "
 
 [shell]
 style    = "green"
+format   = "[$indicator]($style)"
 disabled = false
 
 [battery]
@@ -25,3 +26,4 @@ format            = "[$path]($style)[$read_only]($read_only_style) "
 
 [username]
 show_always = true
+format      = "[$user]($style)"
