@@ -26,6 +26,9 @@ then
     alias apt='nala'
 fi
 
-# path
-export PATH=/home/samminhch/.fnm:$PATH
-eval "$(fnm env --use-on-cd)" 
+# fnm integration
+if command -v fnm &> /dev/null;
+then
+    export PATH=/home/samminhch/.fnm:$PATH
+    eval "$(fnm env --use-on-cd)" 
+fi

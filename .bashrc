@@ -119,7 +119,7 @@ source ~/vars.sh
 source ~/utils.sh
 
 # Enable starship prompt
-if [ -e /usr/local/bin/starship ]
+if command -v starship &> /dev/null;
 then
     eval "$(starship init bash)"
 fi
