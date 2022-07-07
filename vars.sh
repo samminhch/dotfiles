@@ -20,6 +20,12 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
+# add /home/minhux/.local/bin to PATH
+if [ -d $HOME/.local/bin ]
+then
+    export PATH=$HOME/.local/bin:$PATH
+fi
+
 # replace apt with nala only if apt is installed
 if command -v apt &> /dev/null;
 then
@@ -29,6 +35,14 @@ fi
 # fnm integration
 if command -v fnm &> /dev/null;
 then
-    export PATH=/home/samminhch/.fnm:$PATH
+    export PATH=$HOME/.fnm:$PATH
     eval "$(fnm env --use-on-cd)" 
+fi
+
+# pyenv integration, assuming it's installed into ~/.pyenv
+if [ -d $HOME/.pyenv ]
+then
+    export PYENV_ROOT=$HOME/.pyenv
+    export PATH=$PYENV_ROOT/bin:$PATH
+    eval "$(pyenv init -)"
 fi
