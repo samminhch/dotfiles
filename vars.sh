@@ -10,7 +10,7 @@ alias free='free -m'                                # Show sizes in MB
 alias gitu='git add . && git commit && git push'
 
 if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    test -r $HOME/.dircolors && eval "$(dircolors -b $HOME/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
     alias dir='dir --color=auto'
     alias vdir='vdir --color=auto'
@@ -20,7 +20,7 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
-# add /home/minhux/.local/bin to PATH
+# add ~/.local/bin to PATH
 if [ -d $HOME/.local/bin ]
 then
     export PATH=$HOME/.local/bin:$PATH
