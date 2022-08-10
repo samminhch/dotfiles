@@ -1,7 +1,7 @@
-format = """$username using $shell in $directory$git_branch\
+format = """[━━━](bold green) $username using $shell $fill $directory$git_branch[━━━](bold green)
 $character"""
 
-add_newline = false
+add_newline = true
 
 # Replace the "❯" symbol in the prompt with "➜"
 [character] # The name of the module we are configuring is "character"
@@ -27,3 +27,7 @@ format            = "[$path]($style)[$read_only]($read_only_style) "
 [username]
 show_always = true
 format      = "[$user]($style)"
+
+[fill]
+symbol = '━'
+style = "bold green"

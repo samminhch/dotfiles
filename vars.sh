@@ -21,7 +21,7 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # replace apt with nala only if apt is installed
-if command -v apt &> /dev/null;
+if command -v nala &> /dev/null;
 then
     alias apt='nala'
 fi
