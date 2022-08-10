@@ -18,10 +18,11 @@ A repo to house all of my linux configuration files
     ```console
     git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
     ```
-### Ubuntu Install Script
+### Ubuntu 22.04 Install Script
 It also has nala, which is an apt frontend and makes things pretty :)
 ```console
 sudo apt install wget curl git neovim ranger tmux yadm
+echo "deb https://deb.volian.org/volian/ scar main" | sudo tee /etc/apt/sources.list.d/volian-archive-scar-unstable.list
 wget -qO - https://deb.volian.org/volian/scar.key | sudo tee /etc/apt/trusted.gpg.d/volian-archive-scar-unstable.gpg > /dev/null
 curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg
 sudo chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg
