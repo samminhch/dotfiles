@@ -23,7 +23,7 @@ It also has nala, which is an apt frontend and makes things pretty :)
 ```console
 sudo apt update
 # install required packages
-sudo apt install make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev git neovim ranger tmux yadm zsh
+sudo apt install -y make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev git neovim ranger tmux yadm zsh
 # install oh-my-zsh
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 # install zsh-autosuggestions
@@ -34,7 +34,7 @@ sudo chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg
 echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
 # install github-cli
 sudo apt update
-sudo apt install gh
+sudo apt install -y gh
 # install starship prompt
 curl -sS https://starship.rs/install.sh | sh
 # install pyenv
@@ -45,7 +45,7 @@ fnm completions --shell $(echo $SHELL | cut -d'/' -f 3)
 # add nala repo
 echo "deb https://deb.volian.org/volian/ scar main" | sudo tee /etc/apt/sources.list.d/volian-archive-scar-unstable.list
 wget -qO - https://deb.volian.org/volian/scar.key | sudo tee /etc/apt/trusted.gpg.d/volian-archive-scar-unstable.gpg > /dev/null
-sudo apt install nala
+sudo apt install -y nala
 ```
 
 ## yadm script
