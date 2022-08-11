@@ -91,14 +91,14 @@ HEADLINE_DO_GIT_STATUS='true'
 HEADLINE_PROMPT="%(#.#.%(!.!.➜)) " # consider "%#"
 
 # Repeated characters (no styles here)
-HEADLINE_LINE_CHAR='_' # line above information
+HEADLINE_LINE_CHAR='━' # line above information
 HEADLINE_PAD_CHAR=' ' # space between <path> and <branch>
 
 # Prefixes (optional)
-HEADLINE_USER_PREFIX='' # consider " "
-HEADLINE_HOST_PREFIX='' # consider " "
-HEADLINE_PATH_PREFIX='' # consider " "
-HEADLINE_BRANCH_PREFIX='' # consider " "
+HEADLINE_USER_PREFIX=' ' # consider " "
+HEADLINE_HOST_PREFIX=' ' # consider " "
+HEADLINE_PATH_PREFIX=' ' # consider " "
+HEADLINE_BRANCH_PREFIX=' ' # consider " "
 
 # Joints
 HEADLINE_USER_BEGIN=''

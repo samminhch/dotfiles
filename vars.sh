@@ -9,8 +9,9 @@ alias df='df -h'                                    # Human-readable sizes
 alias free='free -m'                                # Show sizes in MB
 alias gitu='git add . && git commit && git push'
 
+# enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
-    test -r $HOME/.dircolors && eval "$(dircolors -b $HOME/.dircolors)" || eval "$(dircolors -b)"
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
     alias dir='dir --color=auto'
     alias vdir='vdir --color=auto'
@@ -39,10 +40,10 @@ then
     eval "$(fnm env --use-on-cd)" 
 fi
 
-# pyenv integration, assuming it's installed into ~/.pyenv
-if [ -d $HOME/.pyenv ]
+# pyenv integration
+if [ -e $HOME/.pyenv ]
 then
-    export PYENV_ROOT=$HOME/.pyenv
-    export PATH=$PYENV_ROOT/bin:$PATH
+    export PYENV_ROOT="$HOME/.pyenv"
+    command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
     eval "$(pyenv init -)"
 fi

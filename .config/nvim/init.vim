@@ -6,7 +6,6 @@
 " ╚═╝╚═╝  ╚═══╝╚═╝   ╚═╝╚═╝  ╚═══╝  ╚═╝╚═╝     ╚═╝
 "
 " This file contains configurations for nvim
-" & neovide.
 "
 " @author Minh Nguyen
 " @github https://github.com/samminhch
@@ -18,7 +17,7 @@ runtime custom/bindings.vim
 
 """""""""""""""""""""""""
 " █▀ █▄█ █▀ ▀█▀ █▀▀ █▀▄▀█
-" ▄█ ░█░ ▄█ ░█░ ██▄ █░▀░█
+" ▄█  █  ▄█  █  ██▄ █ ▀ █
 """""""""""""""""""""""""
 " change leader key to '\'
 let mapleader = ' '
@@ -36,8 +35,8 @@ set fileencoding=utf8
 set shortmess+=c
 
 """"""""""""""""""""""""""""""""""""""""""
-" ▄▀█ █▀█ █▀█ █▀▀ ▄▀█ █▀█ ▄▀█ █▄░█ █▀▀ █▀▀
-" █▀█ █▀▀ █▀▀ ██▄ █▀█ █▀▄ █▀█ █░▀█ █▄▄ ██▄
+" ▄▀█ █▀█ █▀█ █▀▀ ▄▀█ █▀█ ▄▀█ █▄ █ █▀▀ █▀▀
+" █▀█ █▀▀ █▀▀ ██▄ █▀█ █▀▄ █▀█ █ ▀█ █▄▄ ██▄
 """"""""""""""""""""""""""""""""""""""""""
 " default colorscheme
 colorscheme everforest
@@ -72,8 +71,8 @@ set smartcase	" override ignorecase if searching for cap. letters
 set hlsearch
 
 """""""""""""""""""""""""""""""""""""""""""""""""""
-" ▄▀█ █░█ ▀█▀ █▀█ █▀▀ █▀█ █▀▄▀█ █▀█ █░░ █▀▀ ▀█▀ █▀▀
-" █▀█ █▄█ ░█░ █▄█ █▄▄ █▄█ █░▀░█ █▀▀ █▄▄ ██▄ ░█░ ██▄
+" ▄▀█ █ █ ▀█▀ █▀█ █▀▀ █▀█ █▀▄▀█ █▀█ █   █▀▀ ▀█▀ █▀▀
+" █▀█ █▄█  █  █▄█ █▄▄ █▄█ █ ▀ █ █▀▀ █▄▄ ██▄  █  ██▄
 """""""""""""""""""""""""""""""""""""""""""""""""""
 set wildmenu
 set wildmode  =list:longest
