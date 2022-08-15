@@ -28,13 +28,17 @@ then
 fi
 
 # replace apt with nala only if apt is installed
-if command -v nala &> /dev/null;
+# TODO: Simplify this statement
+if command -v apt &> /dev/null;
 then
-    alias apt='nala'
+    if command -v nala &> /dev/null;
+    then
+        alias apt='nala'
+    fi
 fi
 
 # fnm integration
-if command -v fnm &> /dev/null;
+if [ -e $HOME/.fnm ]
 then
     export PATH=$HOME/.fnm:$PATH
     eval "$(fnm env --use-on-cd)" 
