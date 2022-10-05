@@ -81,7 +81,8 @@ let g:coc_global_extensions =
   \  'coc-markdownlint',
   \  'coc-markdown-preview-enhanced',
   \  'coc-stylua',
-  \  'coc-sumneko-lua'
+  \  'coc-sumneko-lua',
+  \  'coc-rust-analyzer'
   \ ]
 
 " █▀▀ █▀█ █   █▀█ █▀█ █ ▀█ █▀▀ █▀█

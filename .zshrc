@@ -28,8 +28,12 @@ plugins=(
     gh
     git
     pip
+    sudo
     python
+    history
     extract
+    copyfile
+    dirhistory
     web-search
     zsh-autosuggestions
 )
@@ -61,3 +65,7 @@ fi
 
 source ~/vars.sh
 source ~/utils.sh
+
+
+# Load Angular CLI autocompletion.
+source <(ng completion script)

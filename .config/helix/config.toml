@@ -1,0 +1,12 @@
+theme = "everforest_dark"
+
+[editor]
+color-modes	= true
+
+[editor.file-picker]
+hidden = false
+
+[editor.indent-guides]
+render = true
+character = "╎"
+
