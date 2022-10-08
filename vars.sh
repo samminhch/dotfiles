@@ -27,6 +27,21 @@ then
     export PATH=$HOME/.local/bin:$PATH
 fi
 
+# add ~/.local/lib to PATH
+if [ -d $HOME/.local/lib ]
+then
+    export PATH=$HOME/.local/lib:$PATH
+fi
+
+
+
+
+# helix alias
+if command -v helix &> /dev/null;
+then
+    alias hx='helix'
+fi
+
 # replace apt with nala only if apt is installed
 # TODO: Simplify this statement
 if command -v apt &> /dev/null;
@@ -41,6 +56,10 @@ fi
 if [ -e $HOME/.fnm ]
 then
     export PATH=$HOME/.fnm:$PATH
+fi
+
+if command -v fnm &> /dev/null;
+then
     eval "$(fnm env --use-on-cd)" 
 fi
 

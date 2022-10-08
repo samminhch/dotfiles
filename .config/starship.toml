@@ -1,4 +1,4 @@
-format = """[━━━](bold green) $username using $shell $fill $directory$git_branch[━━━](bold green)
+format = """[━━━](bold green) $root $username using $shell $fill $directory$git_branch[━━━](bold green)
 $character"""
 
 add_newline = true
@@ -31,3 +31,6 @@ format      = "[$user]($style)"
 [fill]
 symbol = '━'
 style = "bold green"
+
+[sudo]
+disabled = false
