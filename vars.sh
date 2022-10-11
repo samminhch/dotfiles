@@ -33,9 +33,6 @@ then
     export PATH=$HOME/.local/lib:$PATH
 fi
 
-
-
-
 # helix alias
 if command -v helix &> /dev/null;
 then
@@ -49,6 +46,11 @@ then
     if command -v nala &> /dev/null;
     then
         alias apt='nala'
+    else
+        curl -sS https://starship.rs/install.sh | sh
+        echo "deb https://deb.volian.org/volian/ scar main" | sudo tee /etc/apt/sources.list.d/volian-archive-scar-unstable.list
+        wget -qO - https://deb.volian.org/volian/scar.key | sudo tee /etc/apt/trusted.gpg.d/volian-archive-scar-unstable.gpg > /dev/null
+        sudo apt install -y nala
     fi
 fi
 
@@ -69,4 +71,10 @@ then
     export PYENV_ROOT="$HOME/.pyenv"
     command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
     eval "$(pyenv init -)"
+fi
+
+# add Flutter to path. It should be installed on the home directory
+if [ -e $HOME/flutter ]
+then
+    export PATH="$PATH:`pwd`/flutter/bin"
 fi
