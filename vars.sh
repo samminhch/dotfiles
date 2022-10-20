@@ -78,3 +78,9 @@ if [ -e $HOME/flutter ]
 then
     export PATH="$PATH:`pwd`/flutter/bin"
 fi
+
+# add Brave Browser as an CHROME_EECUTABLE for flutter deevelopment
+if [ -e /usr/bin/brave ]
+then
+    export CHROME_EXECUTABLE='/usr/bin/brave'
+fi
