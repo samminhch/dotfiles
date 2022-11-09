@@ -21,6 +21,7 @@ runtime custom/bindings.vim
 """""""""""""""""""""""""
 " change leader key to '\'
 let mapleader = ' '
+
 " disable backup files
 set nobackup
 set nowritebackup
@@ -53,12 +54,12 @@ filetype on
 filetype plugin on
 filetype indent on
 
-" line numbers on
+" enable line numbers
 set nu
 
 " whitespace fuckery
 set shiftwidth=4
-set tabstop   =4
+set tabstop=4
 set expandtab     " tabs to spaces for compatibility
 
 """"""""""""""""""""""""

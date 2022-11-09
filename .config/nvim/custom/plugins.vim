@@ -73,16 +73,16 @@ endif
 " extensions
 let g:coc_global_extensions =
   \ [
-  \  'coc-clangd',
-  \  'coc-java',
-  \  'coc-pydocstring',
-  \  'coc-jedi',
-  \  'coc-sh',
-  \  'coc-markdownlint',
-  \  'coc-markdown-preview-enhanced',
-  \  'coc-stylua',
-  \  'coc-sumneko-lua',
-  \  'coc-rust-analyzer'
+  \ 'coc-clangd',
+  \ 'coc-java',
+  \ 'coc-pydocstring',
+  \ 'coc-jedi',
+  \ 'coc-sh',
+  \ 'coc-mark  downlint',
+  \ 'coc-mark  down-preview-enhanced',
+  \ 'coc-stylua',
+  \ 'coc-sumneko-lua',
+  \ 'coc-rust-analyzer'
   \ ]
 
 " █▀▀ █▀█ █   █▀█ █▀█ █ ▀█ █▀▀ █▀█

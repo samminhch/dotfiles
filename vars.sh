@@ -54,6 +54,11 @@ then
     fi
 fi
 
+if command -v paru &> /dev/null;
+then
+    alias joy="paru "
+fi
+
 # fnm integration
 if [ -e $HOME/.fnm ]
 then
