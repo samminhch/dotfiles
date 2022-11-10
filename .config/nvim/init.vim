@@ -12,8 +12,8 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""
 
 " import ~/.vimrc
-runtime custom/plugins.vim
-runtime custom/bindings.vim
+runtime ./custom/plugins.vim
+runtime ./custom/keybindings.vim
 
 """""""""""""""""""""""""
 " █▀ █▄█ █▀ ▀█▀ █▀▀ █▀▄▀█
@@ -55,7 +55,7 @@ filetype plugin on
 filetype indent on
 
 " enable line numbers
-set nu
+set nu rnu
 
 " whitespace fuckery
 set shiftwidth=4

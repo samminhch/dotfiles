@@ -14,7 +14,7 @@
 " █▄▄ █▄█ █▄▄
 """""""""""""
 " confirm on enter
-inoremap <silent><expr> <cr> coc#pum#visible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
+inoremap <expr> <cr> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
 
 " Applying codeAction to the selection region
 nmap <C-,> <Plug>(coc-fix-current)
