@@ -23,10 +23,10 @@ $rust\
 $scala\
 [](fg:#21282C bg:#21282C)\
 $docker_context\
-[](fg:#21282C bg:#DBBC7F)\
+[](fg:#21282C bg:#E67E80)\
 $time\
 $status\
-[ ](fg:#DBBC7F)
+[ ](fg:#E67E80)
 └─▶\
 """
 
@@ -133,12 +133,12 @@ format = '[ $symbol ($version) ]($style)'
 [time]
 disabled = true
 time_format = "%R" # Hour:Minute Format
-style = "bg:#DBBC7F"
+style = "bg:#E67E80"
 format = '[ ♥ $time ]($style)'
 
 [status]
 disabled = false
 symbol = '✖'
 success_symbol = '✔'
-style = "bg:#DBBC7F"
+style = "bg:#E67E80"
 format = "[ $symbol ]($style)"
