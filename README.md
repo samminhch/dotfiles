@@ -51,8 +51,8 @@ This snippet uses `yay` as the AUR helper, but you can use whatever one you want
 With the AUR, it's not needed to run the bootstrap script:
 
 ```console
-yay -Sy
-yay -S wget curl unzip yadm-git fnm neovim python-pip python-pipenv pyenv zsh oh-my-zsh-git
+yay
+yay -S wget curl unzip yadm fnm neovim python-pip python-pipenv pyenv zsh oh-my-zsh
 yadm clone https://github.com/samminhch/dotfiles
 yadm stash
 ```
