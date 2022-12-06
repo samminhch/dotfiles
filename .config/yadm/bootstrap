@@ -50,10 +50,6 @@ curl https://pyenv.run | sh
 pip install pipenv
 
 # install oh-my-zsh
-wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
-sh install.sh --keep-zshrc
-rm install.sh
-
 echo "You're almost done setting up! Just a couple more housekeeping items:"
 echo "Please install these oh-my-zsh dependencies  😊"
 echo 'git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions'
@@ -61,3 +57,6 @@ echo 'git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_C
 echo 'git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k'
 echo 'pip install thefuck'
 
+wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
+sh install.sh --keep-zshrc
+rm install.sh
