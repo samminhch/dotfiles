@@ -27,10 +27,7 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # add ~/.local/bin to PATH
-if [ -d $HOME/.local/bin ]
-then
-    export PATH=$HOME/.local/bin:$PATH
-fi
+export PATH=$HOME/.local/bin:$PATH
 
 # add ~/.local/lib to PATH
 if [ -d $HOME/.local/lib ]
@@ -44,18 +41,12 @@ then
     alias hx='helix'
 fi
 
-# replace apt with nala only if apt is installed
-# TODO: Simplify this statement
+# apt is nala if nala is installed
 if command -v apt &> /dev/null;
 then
     if command -v nala &> /dev/null;
     then
         alias apt='nala'
-    else
-        curl -sS https://starship.rs/install.sh | sh
-        echo "deb https://deb.volian.org/volian/ scar main" | sudo tee /etc/apt/sources.list.d/volian-archive-scar-unstable.list
-        wget -qO - https://deb.volian.org/volian/scar.key | sudo tee /etc/apt/trusted.gpg.d/volian-archive-scar-unstable.gpg > /dev/null
-        sudo apt install -y nala
     fi
 fi
 
