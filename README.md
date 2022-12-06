@@ -20,39 +20,61 @@ This repo uses [Yet Another Dotfiles Manager (yadm)](https://yadm.io/)
 Please follow the [installation guide](https://yadm.io/docs/install) to install `yadm`.
 Afterwards, use the [following commands](https://yadm.io/docs/getting_started#).
 
+**Important:** Do *not* immediately run the bootstrap file. You need to run `yadm stash` in order to change to the dotfile's `.bashrc`
 ```console
 yadm clone https://github.com/samminhch/dotfiles
-yadm status
+yadm stash
 ```
 
 ### On Ubuntu / Debian distributions
-**Important:** Add `$HOME/.local/bin` to your `PATH` enviornment variable!
+
 ```console
 sudo apt update
-sudo apt install git python3-pip curl zsh unzip yadm neovim wget
+sudo apt install git python3-pip curl zsh unzip yadm neovim wget 
 yadm clone https://github.com/samminhch/dotfiles
 yadm stash
+./.config/yadm/bootstrap
 ```
 
+#### Post-Install
+
+Reload your shell, and install the latest NodeJS LTS release using `fnm`. For example:
+
+```console
+fnm install 18.12.1
+```
+
+... and you should be good to go :)
+
 ### On Arch-based distributions
-This snippet uses `yay` as the AUR helper, but you can use whatever one you want
+This snippet uses `yay` as the AUR helper, but you can use whatever one you want.
+With the AUR, it's not needed to run the bootstrap script:
 
 ```console
 yay -Sy
-yay -S python-pip zsh unzip yadm-git neovim wget
+yay -S wget curl unzip yadm-git fnm neovim python-pip python-pipenv pyenv zsh oh-my-zsh-git fnm-bin
 yadm clone https://github.com/samminhch/dotfiles
 yadm stash
 ```
 
-## Post-Install
-You'll need to install these oh-my-zsh plugins:
+#### Post-Install
+Reload your shell, and then install the oh-my-zsh plugins:
 
 ```console
+pip install thefuck
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
-pip install thefuck
 ```
+
+Install the latest NodeJS LTS release using `fnm`. For example:
+
+```console
+fnm install 18.12.1
+```
+
+... and you should be good to go :)
+
+## Additional Addities
 
 I use [this wallpaper](https://www.pexels.com/photo/close-up-photography-of-leaves-with-droplets-807598/)
 throughout my desktop, because I like leaves. I'll also include them in the
