@@ -25,6 +25,23 @@ yadm clone https://github.com/samminhch/dotfiles
 yadm status
 ```
 
+### On Ubuntu / Debian distributions
+**Important:** Add `$HOME/.local/bin` to your `PATH` enviornment variable!
+```console
+sudo apt update
+sudo apt install git python3-pip curl zsh unzip yadm neovim wget
+yadm clone https://github.com/samminhch/dotfiles
+```
+
+### On Arch-based distributions
+This snippet uses `yay` as the AUR helper, but you can use whatever one you want
+
+```console
+yay -Sy
+yay -S python-pip zsh unzip yadm-git neovim wget
+yadm clone https://github.com/samminhch/dotfiles
+```
+
 I use [this wallpaper](https://www.pexels.com/photo/close-up-photography-of-leaves-with-droplets-807598/)
 throughout my desktop, because I like leaves. I'll also include them in the
 GitHub repository for you to use if the link becomes inaccessable.
