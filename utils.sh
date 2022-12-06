@@ -1,4 +1,4 @@
-function req_link
+req_link()
 {
     read -p "Do you wish to sync '$1' to '$2' [y/N]? " resp
     if [[ $resp =~ [Yy] ]];
@@ -17,7 +17,7 @@ function req_link
 #
 # # ex - archive extractor
 # # usage: ex <file>
-function ex
+ex()
 {
     if [ -f $1 ] ; then
         case $1 in
@@ -37,4 +37,10 @@ function ex
     else
         echo "'$1' is not a valid file"
     fi
+}
+
+# from https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh
+command_exists() 
+{
+  command -v "$1" >/dev/null 2>&1
 }
