@@ -10,6 +10,7 @@ run this, and save hours setting up my desktop!
 - [ ] pip (specifically for python 3)
 - [ ] curl
 - [ ] zsh
+- [ ] unzip
 - [ ] A [nerd font](https://github.com/ryanoasis/nerd-fonts/)
 
 ## Getting Started
