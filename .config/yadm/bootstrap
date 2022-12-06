@@ -1,38 +1,40 @@
 #!/bin/sh
 
 dependencies="
-curl
-unzip
-git
-pip (for python 3)
+\tzsh\n
+\tcurl\n
+\twget\n
+\tunzip\n
+\tgit\n
+\tpip (for python 3)\n
 "
 
 nodejs_lts_latest='18.12.1'
 
-function exit_program {
-    case $1 in
-        '2')
-            echo 'There are unmet dependencies for bootstrap to work. Here are the dependencies required for bootstrap:'
+exit_program() {
+    case "$1" in
+        2)
+            echo "$2 is required for bootstrap to work. Here are the dependencies required for bootstrap:"
             echo $dependencies
             ;;
         *)
-            echo 'invalid exit code.'
+            echo "invalid exit code: $1"
     esac
     
     echo 'If you are able to, please run ~/.config/yadm/bootstrap once you have finished fixing your errors'
-    return 1
+    exit 1
 }
 
 # from https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh
-function command_exists {
-  command -v "$@" >/dev/null 2>&1
+command_exists() {
+  command -v "$1" >/dev/null 2>&1
 }
 
 # make sure that all dependencies are installed
-command_exists git || exit_program 2
-command_exists zsh || exit_program 2
-command_exists curl || exit_program 2
-command_exists pip3 || command_exists pip || exit_program 2
+[ -f /usr/bin/git ] || exit_program 2 git
+[ -f /usr/bin/zsh ] || exit_program 2 zsh
+command_exists pip || exit_program 2 pip
+[ -f /usr/bin/curl ] || exit_program 2 curl
 
 # starship prompt for bash & other shells 😊
 curl -sS https://starship.rs/install.sh | sh
@@ -46,7 +48,10 @@ curl https://pyenv.run | sh
 pip install pipenv
 
 # install oh-my-zsh and the plugins dependencies
-curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh --keep-zshrc
+wget -P $HOME/omz-temp/ https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh
+$HOME/omz-tmp/install.sh --keep-zshrc
+rm -rf $HOME/omz-tmp/
+
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 pip install thefuck
