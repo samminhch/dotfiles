@@ -31,6 +31,7 @@ yadm status
 sudo apt update
 sudo apt install git python3-pip curl zsh unzip yadm neovim wget
 yadm clone https://github.com/samminhch/dotfiles
+yadm stash
 ```
 
 ### On Arch-based distributions
@@ -40,6 +41,17 @@ This snippet uses `yay` as the AUR helper, but you can use whatever one you want
 yay -Sy
 yay -S python-pip zsh unzip yadm-git neovim wget
 yadm clone https://github.com/samminhch/dotfiles
+yadm stash
+```
+
+## Post-Install
+You'll need to install these oh-my-zsh plugins:
+
+```console
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+pip install thefuck
 ```
 
 I use [this wallpaper](https://www.pexels.com/photo/close-up-photography-of-leaves-with-droplets-807598/)
