@@ -13,6 +13,12 @@ run this, and save hours setting up my desktop!
 - [ ] unzip
 - [ ] A [nerd font](https://github.com/ryanoasis/nerd-fonts/)
 
+Additionally, there are config files for these packages:
+- [ ] neovim
+- [ ] helix
+- [ ] tmux (*use at your own risk! i'm not sure how well it's set up*)
+- [ ] ranger
+
 ## Getting Started
 
 This repo uses [Yet Another Dotfiles Manager (yadm)](https://yadm.io/)
@@ -20,7 +26,9 @@ This repo uses [Yet Another Dotfiles Manager (yadm)](https://yadm.io/)
 Please follow the [installation guide](https://yadm.io/docs/install) to install `yadm`.
 Afterwards, use the [following commands](https://yadm.io/docs/getting_started#).
 
-**Important:** Do *not* immediately run the bootstrap file. You need to run `yadm stash` in order to change to the dotfile's `.bashrc`
+**Important:** Do *not* immediately run the bootstrap file. You need to run `yadm stash` in order to load the `dotfile`'s
+`.bashrc`.
+
 ```console
 yadm clone https://github.com/samminhch/dotfiles
 yadm stash
@@ -38,7 +46,7 @@ yadm stash
 
 #### Post-Install
 
-Reload your shell, and install the latest NodeJS LTS release using `fnm`. For example:
+**Reload your shell**, and install the latest NodeJS LTS release using `fnm`. For example:
 
 ```console
 fnm install 18.12.1
@@ -48,25 +56,17 @@ fnm install 18.12.1
 
 ### On Arch-based distributions
 This snippet uses `yay` as the AUR helper, but you can use whatever one you want.
-With the AUR, it's not needed to run the bootstrap script:
 
 ```console
 yay
-yay -S wget curl unzip yadm fnm neovim python-pip python-pipenv pyenv zsh oh-my-zsh
+yay -S wget curl unzip yadm fnm neovim python-pip zsh
 yadm clone https://github.com/samminhch/dotfiles
 yadm stash
+./.config/yadm/bootstrap
 ```
 
 #### Post-Install
-Reload your shell, and then install the oh-my-zsh plugins:
-
-```console
-pip install thefuck
-git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-```
-
-Install the latest NodeJS LTS release using `fnm`. For example:
+**Reload your shell**, and then install the latest NodeJS LTS release using `fnm`. For example:
 
 ```console
 fnm install 18.12.1
