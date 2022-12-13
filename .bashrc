@@ -99,3 +99,7 @@ if [ -e "$HOME/.cargo/env" ];
 then
     . "$HOME/.cargo/env"
 fi
+
+# fnm
+export PATH="/home/samminhch/.local/share/fnm:$PATH"
+eval "`fnm env`"
