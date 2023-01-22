@@ -11,19 +11,24 @@ alias gitu='git add . && git commit && git push'
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
-    if command -v lsd > /dev/null;
-    then
-        alias ls='lsd '
-    else
-        test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-        alias ls='ls --color=auto'
-        alias dir='dir --color=auto'
-        alias vdir='vdir --color=auto'
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+    alias dir='dir --color=auto'
+    alias vdir='vdir --color=auto'
 
-        alias grep='grep --color=auto'
-        alias fgrep='fgrep --color=auto'
-        alias egrep='egrep --color=auto'
-    fi
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
+
+# replace ls with lsd or exa
+if command -v lsd > /dev/null;
+then
+    alias ls='lsd '
+elif command -v exa > /dev/null;
+then
+    alias ls='exa '
+else
 fi
 
 # add ~/.local/bin to PATH
@@ -42,12 +47,9 @@ then
 fi
 
 # apt is nala if nala is installed
-if command -v apt &> /dev/null;
+if command -v apt &> /dev/null && command -v nala &> /dev/null;
 then
-    if command -v nala &> /dev/null;
-    then
-        alias apt='nala'
-    fi
+    alias apt='nala'
 fi
 
 if command -v paru &> /dev/null;
@@ -56,9 +58,10 @@ then
 fi
 
 # fnm integration
-if [ -e $HOME/.fnm ]
+if [ -e $HOME/.local/share/fnm ]
 then
-    export PATH=$HOME/.fnm:$PATH
+    export PATH="$HOME/.local/share/fnm:$PATH"
+    eval "`fnm env`"
 fi
 
 if command -v fnm &> /dev/null;
@@ -78,10 +81,4 @@ fi
 if [ -e $HOME/flutter ]
 then
     export PATH="$PATH:`pwd`/flutter/bin"
-fi
-
-# add Brave Browser as an CHROME_EECUTABLE for flutter deevelopment
-if [ -e /usr/bin/brave ]
-then
-    export CHROME_EXECUTABLE='/usr/bin/brave'
 fi

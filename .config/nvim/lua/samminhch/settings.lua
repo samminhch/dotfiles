@@ -28,10 +28,15 @@ o.shiftwidth = 4
 o.tabstop = 4
 o.softtabstop = 4
 o.wrap = true
+o.breakindent = true
 o.clipboard = 'unnamedplus'
+o.hlsearch = false
 
 -- Format on save
 c [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()]]
+
+-- Set completeopt to have a better completion experience
+vim.o.completeopt = 'menuone,noselect'
 
 -- vim searching
 o.ignorecase = true

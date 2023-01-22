@@ -1,10 +1,12 @@
-local builtin = require('telescope.builtin')
-local function map(mode, binding, value)
-  vim.keymap.set(mode, binding, value, {silent = true})
-end
+pcall(require('telescope').load_extension, 'fzf')
 
-map('n', '<leader>ff', builtin.find_files)
-map('n', '<leader>fg', builtin.git_files)
-map('n', '<leader>fs', function()
-        builtin.grep_string( {search = vim.fn.input('Grep > ') } )
-end)
+require('telescope').setup {
+  defaults = {
+    mappings = {
+      i = {
+        ['<C-u>'] = false,
+        ['<C-d>'] = false,
+      },
+    },
+  },
+}
