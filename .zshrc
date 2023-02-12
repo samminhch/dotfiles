@@ -16,7 +16,6 @@ plugins=(
   gh
   git
   sudo
-  thefuck
   zsh-autosuggestions
   zsh-syntax-highlighting
 )

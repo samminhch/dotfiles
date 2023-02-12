@@ -1,34 +1,115 @@
-local function map(mode, binding, value)
-  vim.keymap.set(mode, binding, value, {silent = true})
+-- Define what COC extensions are going to be installed
+vim.g.coc_global_extensions = {
+    'coc-java',
+    'coc-jedi',
+    'coc-json',
+    'coc-html',
+    'coc-git',
+    'coc-eslint',
+    'coc-clangd',
+    'coc-docker',
+    'coc-html-css-support',
+    'coc-markdownlint',
+    'coc-sh',
+    'coc-rust-analyzer',
+    'coc-spell-checker',
+    'coc-lua',
+    'coc-vimlsp'
+}
+
+local map = vim.keymap.set
+-- Autocomplete
+function _G.check_back_space()
+    local col = vim.fn.col('.') - 1
+    return col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') ~= nil
 end
 
--- lsp-zero setup
-local lsp = require('lsp-zero')
-lsp.preset('recommended')
+local opts = {silent = true, noremap = true, expr = true, replace_keycodes = false}
 
-lsp.nvim_workspace()
+-- Move between suggestions
+map("i", "<c-n>", 'coc#pum#visible() ? coc#pum#next(1) : v:lua.check_back_space() ? "<c-n>" : coc#refresh()', opts)
+map("i", "<c-p>", [[coc#pum#visible() ? coc#pum#prev(1) : "<c-p>"]], opts)
+-- Confirm selection
+map("i", "<cr>", [[coc#pum#visible() ? coc#pum#confirm() : "<cr>"]], opts)
 
-local cmp = require('cmp')
-local cmp_select = {behavior = cmp.SelectBehavior.Select}
+-- Expand snippets
+map("i", "<c-j>", "<Plug>(coc-snippets-expand-jump)")
 
--- mason settings
-require('mason.settings').set({
-  ui = {
-    border = 'rounded'
-  }
+-- Navigate diagnostics
+-- Use `:CocDiagnostics` to get all diagnostics of current buffer in location list
+map("n", "<leader>dn", "<Plug>(coc-diagnostic-next)", {silent = true})
+map("n", "<leader>dp", "<Plug>(coc-diagnostic-prev)", {silent = true})
+
+-- GoTo code navigation
+map("n", "<leader>gd", "<Plug>(coc-definition)", {silent = true})
+map("n", "<leader>gt", "<Plug>(coc-type-definition)", {silent = true})
+map("n", "<leader>gi", "<Plug>(coc-implementation)", {silent = true})
+map("n", "<leader>gr", "<Plug>(coc-references)", {silent = true})
+
+map("n", "<leader>rn", "<Plug>(coc-rename)", {noremap = true})
+map("n", "K", "<cmd>call CocAction('doHover')<CR>", {silent = true})
+
+-- Highlight the symbol and its references on a CursorHold event(cursor is idle)
+vim.api.nvim_create_augroup("CocGroup", {})
+vim.api.nvim_create_autocmd("CursorHold", {
+    group = "CocGroup",
+    command = "silent call CocActionAsync('highlight')",
+    desc = "Highlight symbol under cursor on CursorHold"
 })
 
--- keybindings
-local b = require('telescope.builtin')
-map('n', '<leader>rn', vim.lsp.buf.rename)
-map('n', '<leader>ca', vim.lsp.buf.code_action)
-map('n', '<leader>do', vim.diagnostic.open_float)
-map('n', '<leader>dp', vim.diagnostic.goto_prev)
-map('n', '<leader>dn', vim.diagnostic.goto_prev)
-map('n', '<leader>ff', vim.lsp.buf.format)
-map('i', '<C-h>', vim.lsp.buf.signature_help)
-map('n', '<leader>ds', b.lsp_document_symbols)
-map('n', '<leader>ws', b.lsp_dynamic_workspace_symbols)
-map('n', '<leader>gr', b.lsp_references)
+-- Setup formatexpr specified filetype(s)
+vim.api.nvim_create_autocmd("FileType", {
+    group = "CocGroup",
+    pattern = "typescript,json",
+    command = "setl formatexpr=CocAction('formatSelected')",
+    desc = "Setup formatexpr specified filetype(s)."
+})
 
-lsp.setup()
+-- Update signature help on jump placeholder
+vim.api.nvim_create_autocmd("User", {
+    group = "CocGroup",
+    pattern = "CocJumpPlaceholder",
+    command = "call CocActionAsync('showSignatureHelp')",
+    desc = "Update signature help on jump placeholder"
+})
+
+opts = {silent = true, nowait = true}
+map("x", "<leader>a", "<Plug>(coc-codeaction-selected)", opts)
+map("n", "<leader>a", "<Plug>(coc-codeaction-selected)", opts)
+
+-- Remap keys for apply code actions at the cursor position.
+map("n", "<leader>ac", "<Plug>(coc-codeaction-cursor)", opts)
+-- Remap keys for apply code actions affect whole buffer.
+map("n", "<leader>as", "<Plug>(coc-codeaction-source)", opts)
+-- Remap keys for applying codeActions to the current buffer
+map("n", "<leader>ac", "<Plug>(coc-codeaction)", opts)
+-- Apply the most preferred quickfix action on the current line.
+map("n", "<leader>qf", "<Plug>(coc-fix-current)", opts)
+
+-- Remap keys for apply refactor code actions.
+map("n", "<leader>re", "<Plug>(coc-codeaction-refactor)", { silent = true })
+map("x", "<leader>r", "<Plug>(coc-codeaction-refactor-selected)", { silent = true })
+map("n", "<leader>r", "<Plug>(coc-codeaction-refactor-selected)", { silent = true })
+
+-- Run the Code Lens actions on the current line
+map("n", "<leader>cl", "<Plug>(coc-codelens-action)", opts)
+
+-- Remap <C-f> and <C-b> to scroll float windows/popups
+---@diagnostic disable-next-line: redefined-local
+local opts = {silent = true, nowait = true, expr = true}
+map("n", "<C-f>", 'coc#float#has_scroll() ? coc#float#scroll(1) : "<C-f>"', opts)
+map("n", "<C-b>", 'coc#float#has_scroll() ? coc#float#scroll(0) : "<C-b>"', opts)
+map("i", "<C-f>",
+       'coc#float#has_scroll() ? "<c-r>=coc#float#scroll(1)<cr>" : "<Right>"', opts)
+map("i", "<C-b>",
+       'coc#float#has_scroll() ? "<c-r>=coc#float#scroll(0)<cr>" : "<Left>"', opts)
+map("v", "<C-f>", 'coc#float#has_scroll() ? coc#float#scroll(1) : "<C-f>"', opts)
+map("v", "<C-b>", 'coc#float#has_scroll() ? coc#float#scroll(0) : "<C-b>"', opts)
+-- Add `:Format` command to format current buffer
+vim.api.nvim_create_user_command("Format", "call CocAction('format')", {})
+
+-- " Add `:Fold` command to fold current buffer
+vim.api.nvim_create_user_command("Fold", "call CocAction('fold', <f-args>)", {nargs = '?'})
+
+-- Add `:OR` command for organize imports of the current buffer
+vim.api.nvim_create_user_command("OR", "call CocActionAsync('runCommand', 'editor.action.organizeImport')", {})

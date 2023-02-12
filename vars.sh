@@ -28,7 +28,6 @@ then
 elif command -v exa > /dev/null;
 then
     alias ls='exa '
-else
 fi
 
 # add ~/.local/bin to PATH
