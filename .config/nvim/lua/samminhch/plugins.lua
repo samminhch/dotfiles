@@ -23,51 +23,53 @@ end
 
 local packer_bootstrap = ensure_packer()
 
+local nocode = function()
+    return vim.fn.exists('g:vscode') == 0
+end
+
 return require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
 
     -------------
     -- Plugins --
     -------------
-    use 'mbbill/undotree'
-    use 'paretje/nvim-man'
-    use 'tpope/vim-fugitive'
-    use 'tpope/vim-surround'
-    use 'wellle/targets.vim'
-    use 'rcarriga/nvim-notify'
-    use 'Raimondi/delimitMate'
-    use 'mfussenegger/nvim-jdtls'
-    use 'lewis6991/gitsigns.nvim'
-    use 'norcalli/nvim-colorizer.lua'
-    use 'lukas-reineke/indent-blankline.nvim'
-
-    use {                                         -- filesystem navigation
-        'kyazdani42/nvim-tree.lua',
-        requires = 'kyazdani42/nvim-web-devicons' -- filesystem icons
-    }
+    use { 'mbbill/undotree', cond = { nocode } }
+    use { 'paretje/nvim-man' }
+    use { 'tpope/vim-fugitive' }
+    use { 'tpope/vim-surround' }
+    use { 'wellle/targets.vim' }
+    use { 'rcarriga/nvim-notify', cond = { nocode } }
+    use { 'Raimondi/delimitMate' }
+    use { 'mfussenegger/nvim-jdtls', cond = { nocode } }
+    use { 'lewis6991/gitsigns.nvim', cond = { nocode } }
+    use { 'norcalli/nvim-colorizer.lua', cond = { nocode } }
+    use { 'lukas-reineke/indent-blankline.nvim', cond = { nocode } }
 
     use {
         'nvim-lualine/lualine.nvim',
-        requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+        requires = { 'kyazdani42/nvim-web-devicons', opt = true },
+        cond = { nocode }
     }
 
     use {
         'nvim-telescope/telescope.nvim', tag = '0.1.0',
-        requires = { { 'nvim-lua/plenary.nvim' } }
+        requires = { { 'nvim-lua/plenary.nvim' } },
+        cond = { nocode }
     }
 
     use {
         'nvim-telescope/telescope-fzf-native.nvim',
         run = 'make',
-        cond = vim.fn.executable 'make' == 1
+        cond = vim.fn.executable 'make' == 1 and nocode
     }
 
     use {
         'nvim-treesitter/nvim-treesitter',
-        run = ':TSUpdate'
+        run = ':TSUpdate',
+        cond = { nocode }
     }
 
-    use { 'neoclide/coc.nvim', branch = 'release' }
+    use { 'neoclide/coc.nvim', branch = 'release', cond = { nocode } }
 
     use {
         'numToStr/Comment.nvim',
@@ -90,14 +92,16 @@ return require('packer').startup(function(use)
             --   `nvim-notify` is only needed, if you want to use the notification view.
             --   If not available, we use `mini` as the fallback
             "rcarriga/nvim-notify",
-        }
+        },
+        cond = { nocode }
     })
 
     use {
         'goolord/alpha-nvim',
         config = function()
             require 'alpha'.setup(require 'alpha.themes.dashboard'.config)
-        end
+        end,
+        cond = { nocode }
     }
 
     use {
@@ -110,7 +114,8 @@ return require('packer').startup(function(use)
                 -- or leave it empty to use the default settings
                 -- refer to the configuration section below
             }
-        end
+        end,
+        cond = { nocode }
     }
     ------------
     -- Themes --
@@ -119,8 +124,17 @@ return require('packer').startup(function(use)
         'sainnhe/everforest',
         as = 'everforest',
         config = function()
+
+            vim.g.everforest_background = 'hard'
+            vim.g.everforest_disable_italic_comment = true
+            vim.g.everforest_transparent_background = true
+            vim.g.everforest_better_performance = true
+
+            vim.api.nvim_set_hl(0, 'Normal', { bg = 'none' })
+            vim.api.nvim_set_hl(0, 'NormalFloat', { bg = 'none' })
             vim.cmd.colorscheme('everforest')
-        end
+        end,
+        cond = { nocode }
     }
 
     -- Automatically set up your configuration after cloning packer.nvim

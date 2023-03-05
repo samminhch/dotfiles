@@ -11,7 +11,6 @@
 ----------------------------------------------------------------------------------------------
 
 local o = vim.o
-local c = vim.cmd
 
 -- Editor UI
 o.number = true
@@ -31,9 +30,6 @@ o.wrap = true
 o.breakindent = true
 o.clipboard = 'unnamedplus'
 o.hlsearch = false
-
--- Format on save
-c [[autocmd BufWritePre <buffer> call CocAction('format')]]
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
