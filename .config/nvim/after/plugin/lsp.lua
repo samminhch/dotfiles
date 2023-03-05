@@ -1,20 +1,21 @@
 -- Define what COC extensions are going to be installed
 vim.g.coc_global_extensions = {
+    'coc-sh',
+    'coc-lua',
+    'coc-html',
     'coc-java',
     'coc-jedi',
     'coc-json',
-    'coc-html',
-    'coc-git',
-    'coc-eslint',
     'coc-clangd',
     'coc-docker',
-    'coc-html-css-support',
+    'coc-eslint',
+    'coc-vimlsp',
+    'coc-snippets',
     'coc-markdownlint',
-    'coc-sh',
     'coc-rust-analyzer',
     'coc-spell-checker',
-    'coc-lua',
-    'coc-vimlsp'
+    'coc-html-css-support',
+    'https://github.com/rafamadriz/friendly-snippets@main'
 }
 
 local map = vim.keymap.set

@@ -1,4 +1,4 @@
--- ██████╗ ██╗     ██╗   ██╗ ██████╗ ██╗███╗  ██╗ ██████╗   ██╗     ██╗   ██╗ █████╗ 
+-- ██████╗ ██╗     ██╗   ██╗ ██████╗ ██╗███╗  ██╗ ██████╗   ██╗     ██╗   ██╗ █████╗
 -- ██╔══██╗██║     ██║   ██║██╔════╝ ██║████╗ ██║██╔════╝   ██║     ██║   ██║██╔══██╗
 -- ██████╔╝██║     ██║   ██║██║  ██╗ ██║██╔██╗██║╚█████╗    ██║     ██║   ██║███████║
 -- ██╔═══╝ ██║     ██║   ██║██║  ╚██╗██║██║╚████║ ╚═══██╗   ██║     ██║   ██║██╔══██║
@@ -34,13 +34,14 @@ return require('packer').startup(function(use)
     use 'tpope/vim-fugitive'
     use 'tpope/vim-surround'
     use 'wellle/targets.vim'
+    use 'rcarriga/nvim-notify'
     use 'Raimondi/delimitMate'
     use 'mfussenegger/nvim-jdtls'
     use 'lewis6991/gitsigns.nvim'
     use 'norcalli/nvim-colorizer.lua'
     use 'lukas-reineke/indent-blankline.nvim'
 
-    use { -- filesystem navigation
+    use {                                         -- filesystem navigation
         'kyazdani42/nvim-tree.lua',
         requires = 'kyazdani42/nvim-web-devicons' -- filesystem icons
     }
@@ -63,10 +64,10 @@ return require('packer').startup(function(use)
 
     use {
         'nvim-treesitter/nvim-treesitter',
-        { run = ':TSUpdate' }
+        run = ':TSUpdate'
     }
 
-    use {'neoclide/coc.nvim', branch = 'release'}
+    use { 'neoclide/coc.nvim', branch = 'release' }
 
     use {
         'numToStr/Comment.nvim',
@@ -75,6 +76,42 @@ return require('packer').startup(function(use)
         end
     }
 
+    use({
+        "folke/noice.nvim",
+        config = function()
+            require("noice").setup({
+                -- add any options here
+            })
+        end,
+        requires = {
+            -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+            "MunifTanjim/nui.nvim",
+            -- OPTIONAL:
+            --   `nvim-notify` is only needed, if you want to use the notification view.
+            --   If not available, we use `mini` as the fallback
+            "rcarriga/nvim-notify",
+        }
+    })
+
+    use {
+        'goolord/alpha-nvim',
+        config = function()
+            require 'alpha'.setup(require 'alpha.themes.dashboard'.config)
+        end
+    }
+
+    use {
+        "folke/which-key.nvim",
+        config = function()
+            vim.o.timeout = true
+            vim.o.timeoutlen = 300
+            require("which-key").setup {
+                -- your configuration comes here
+                -- or leave it empty to use the default settings
+                -- refer to the configuration section below
+            }
+        end
+    }
     ------------
     -- Themes --
     ------------
