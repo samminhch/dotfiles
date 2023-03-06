@@ -1,0 +1,3 @@
+[submodule "/home/samminhch/.config/nvim"]
+	path = /home/samminhch/.config/nvim
+	url = https://github.com/samminhch/nvim
