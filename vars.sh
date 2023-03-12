@@ -34,9 +34,9 @@ fi
 export PATH=$HOME/.local/bin:$PATH
 
 # add ~/.local/lib to PATH
-if [ -d $HOME/.local/lib ]
+if [ -d "$HOME/.local/lib" ]
 then
-    export PATH=$HOME/.local/lib:$PATH
+    export PATH="$HOME/.local/lib:$PATH"
 fi
 
 # helix alias
@@ -57,10 +57,10 @@ then
 fi
 
 # fnm integration
-if [ -e $HOME/.local/share/fnm ]
+if [ -e "$HOME/.local/share/fnm" ]
 then
     export PATH="$HOME/.local/share/fnm:$PATH"
-    eval "`fnm env`"
+    eval "$(fnm env)"
 fi
 
 if command -v fnm &> /dev/null;
@@ -69,7 +69,7 @@ then
 fi
 
 # pyenv integration
-if [ -e $HOME/.pyenv ]
+if [ -e "$HOME/.pyenv" ]
 then
     export PYENV_ROOT="$HOME/.pyenv"
     command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
@@ -77,9 +77,9 @@ then
 fi
 
 # add Flutter to path. It should be installed on the home directory
-if [ -e $HOME/flutter ]
+if [ -e "$HOME/flutter" ]
 then
-    export PATH="$PATH:`pwd`/flutter/bin"
+    export PATH="$PATH:$HOME/flutter/bin"
 fi
 
 if [ -d "$HOME/.local/share/bob/nvim-bin" ]
@@ -87,3 +87,26 @@ then
     export PATH="$PATH:$HOME/.local/share/bob/nvim-bin"
 fi
 
+# emacs binary library
+if [ -d "$HOME/.emacs.d/bin" ]
+then
+    export PATH="$PATH:$HOME/.emacs.d/bin"
+fi
+
+# Default editor is neovim
+if command -v nvim &> /dev/null;
+then
+    export EDITOR='nvim'
+fi
+
+# Add cargo binaries
+if [ -d "$HOME/.cargo/bin" ]
+then
+    export PATH="$PATH:$HOME/.cargo/bin"
+fi
+
+# bob-nvim path
+if [ -d "$HOME/.local/share/bob/nvim-bin" ]
+then
+    export PATH="$PATH:$HOME/.local/share/bob/nvim-bin"
+fi
