@@ -1,6 +1,6 @@
 local wezterm = require('wezterm')
 return {
-    font = wezterm.font('ComicMono NF'),
+    font = wezterm.font('FiraCode Nerd Font Mono'),
     color_scheme = 'EverforestDark (Gogh)',
     launch_menu = {
         {
