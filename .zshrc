@@ -42,3 +42,4 @@ source $HOME/vars.sh
 # Enable starship prompt
 eval "$(starship init zsh)"
 
+eval "$($HOME/.cargo/bin/rtx activate zsh)"
