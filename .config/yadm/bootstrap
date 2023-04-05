@@ -1,6 +1,6 @@
 #!/bin/sh
 
-dependencies="
+dependencies='
 \tgit\n
 \tpip (for python 3)\n
 \tpipenv\n
@@ -8,8 +8,8 @@ dependencies="
 \tcurl\n
 \twget\n
 \tunzip\n
-"
-nodejs_version="nodejs@18"
+'
+nodejs_version="nodejs@18.15.0"
 bob_nvim_version="latest"
 
 exit_program() {
@@ -27,10 +27,26 @@ exit_program() {
 }
 
 # from https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh
-command_exists() 
-{
+command_exists() {
   command -v "$1" >/dev/null 2>&1
 }
+
+red() {
+  echo -e "\e[31m$1\e[0m"
+}
+
+green() {
+  echo -e "\e[32m$1\e[0m"
+}
+
+blue() {
+  echo -e "\e[34m$1\e[0m"
+}
+
+yellow() {
+  echo -e "\e[33m$1\e[0m"
+}
+
 
 # make sure that all dependencies are installed
 command_exists git || exit_program 2 "git"
@@ -51,16 +67,18 @@ git sparse-checkout add patched-fonts/FiraCode
 cd - # switch back to prev directory
 
 # starship prompt for bash & other shells 😊
-curl -sS https://starship.rs/install.sh | sh
+curl -sS https://starship.rs/install.sh | sh -s -- -y
 
 # rustup installation
 curl https://sh.rustup.rs -sSf | sh -s -- -y
 
 # cargo install packages
+yellow "[WARN] Installing cargo-binstall. This will take a moment"
 $HOME/.cargo/bin/cargo install --quiet cargo-binstall
 $HOME/.cargo/bin/cargo-binstall -y rtx-cli bob-nvim
 
 # use specified nodejs version
+$HOME/.cargo/bin/rtx install $nodejs_version
 $HOME/.cargo/bin/rtx global $nodejs_version
 
 # use the latest stable neovim version

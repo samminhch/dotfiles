@@ -43,6 +43,7 @@ You should probably back up your current config, if you're using one. However, i
 
 ```console
 yadm clone --recurse-submodules https://github.com/samminhch/dotfiles 
+yadm submodule update --init --recursive
 yadm stash
 ```
 
@@ -53,6 +54,7 @@ sudo apt update
 sudo apt install -y git python3-pip curl zsh unzip yadm wget 
 pip install pipenv
 yadm clone --recurse-submodules https://github.com/samminhch/dotfiles 
+yadm submodule update --init --recursive
 ```
 
 ### On Arch-based distributions
@@ -62,6 +64,7 @@ This snippet uses `paru` as the AUR helper, but you can use whatever one you wan
 paru # to update
 paru -S wget curl unzip yadm python-pipenv
 yadm clone --recurse-submodules https://github.com/samminhch/dotfiles 
+yadm submodule update --init --recursive
 ```
 
 ## Post-Install
