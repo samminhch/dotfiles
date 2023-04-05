@@ -58,7 +58,7 @@ curl https://sh.rustup.rs -sSf | sh -s -- -y
 
 # cargo install packages
 $HOME/.cargo/bin/cargo install --quiet cargo-binstall
-$HOME/.cargo/bin/cargo-binstall --quiet rtx-cli bob-nvim
+$HOME/.cargo/bin/cargo-binstall -y rtx-cli bob-nvim
 
 # use specified nodejs version
 $HOME/.cargo/bin/rtx global $nodejs_version
