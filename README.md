@@ -8,65 +8,64 @@ run this, and save hours setting up my desktop!
 
 - [ ] git
 - [ ] pip (specifically for python 3)
+- [ ] [pipenv](https://pipenv.pypa.io/en/latest/)
 - [ ] curl
 - [ ] zsh
 - [ ] unzip
-- [ ] A [nerd font](https://github.com/ryanoasis/nerd-fonts/).
-  - The one I use is `FiraCode Nerd Font`
 
 Additionally, there are config files for these packages:
-- [ ] neovim
+- [ ] neovim (bob-nvim will be used to install neovim)
 - [ ] helix
-- [ ] tmux (*use at your own risk! i'm not sure how well it's set up*)
 - [ ] ranger
+- [ ] wezterm
+- [ ] starship
+
+### These will be set up for you in the bootstrap file
+
+- [ ] starship
+- [ ] FiraCode Nerd Font: ([AUR](https://archlinux.org/packages/community/any/ttf-firacode-nerd/), [REPO](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/FiraCode))
+- [ ] [RustUp](https://rustup.rs/)
+    - [ ] cargo-binstall
+    - [ ] rtx-cli (for version management)
+        - nodejs@18
+    - [ ] bob-nvim (for neovim management)
+- [ ] oh-my-zsh
+    - [ ] zsh-autosuggestions
+    - [ ] zsh-syntax-highlighting
 
 ## Getting Started
 
 This repo uses [Yet Another Dotfiles Manager (yadm)](https://yadm.io/).
 Please follow the [installation guide](https://yadm.io/docs/install) to install `yadm`.
 
-**Important:** Do *not* immediately run the bootstrap file. You need to run `yadm stash` in order to load the `dotfile`'s
-`.bashrc`.
+### Important!
+You should probably back up your current config, if you're using one. However, it's improtant to know that `.config/yadm/bootstrap` does `yadm stash` to preserve your current machine's configuration
 
 ```console
-yadm clone https://github.com/samminhch/dotfiles
+yadm clone --recurse-submodules https://github.com/samminhch/dotfiles 
 yadm stash
 ```
 
-### On Ubuntu / Debian distributions
+### On Ubuntu / Debian-based distributions
 
-```console
+```sh
 sudo apt update
-sudo apt install git python3-pip curl zsh unzip yadm neovim wget 
-yadm clone https://github.com/samminhch/dotfiles
-yadm stash
-./.config/yadm/bootstrap
+sudo apt install -y git python3-pip curl zsh unzip yadm wget 
+pip install pipenv
+yadm clone --recurse-submodules https://github.com/samminhch/dotfiles 
 ```
 
 ### On Arch-based distributions
-This snippet uses `yay` as the AUR helper, but you can use whatever one you want.
-This snippet also installs the `FiraCode Nerd Font`, as it's the font I use in
-my configurations.
+This snippet uses `paru` as the AUR helper, but you can use whatever one you want.
 
-```console
-yay
-yay -S wget curl unzip yadm neovim python-pip zsh
-yadm clone https://github.com/samminhch/dotfiles
-yadm stash
-./.config/yadm/bootstrap
+```sh
+paru # to update
+paru -S wget curl unzip yadm python-pipenv
+yadm clone --recurse-submodules https://github.com/samminhch/dotfiles 
 ```
 
 ## Post-Install
-**Reload your shell**, and then install the latest NodeJS LTS release using `fnm`. For example:
-
-```console
-fnm install 18.12.1
-```
-
-If you have installed `neovim`, don't mind the error messages that appear when you first run it.
-You just need to run `:PlugInstall` to install the neovim plugins.
-
-... and you should be all good to go 😊
+Reload your shell, and you should be all good to go 😊
 
 ## Additional Addities
 

@@ -1,15 +1,16 @@
 #!/bin/sh
 
 dependencies="
+\tgit\n
+\tpip (for python 3)\n
+\tpipenv\n
 \tzsh\n
 \tcurl\n
 \twget\n
 \tunzip\n
-\tgit\n
-\tpip (for python 3)\n
 "
-
-nodejs_lts_latest='18.12.1'
+nodejs_version="nodejs@18"
+bob_nvim_version="latest"
 
 exit_program() {
     case "$1" in
@@ -32,22 +33,38 @@ command_exists()
 }
 
 # make sure that all dependencies are installed
-command_exists git || exit_program 2 git
-command_exists zsh || exit_program 2 zsh
-command_exists pip || exit_program 2 pip
-command_exists curl || exit_program 2 curl
-command_exists wget || exit_program 2 wget
-command_exists unzip || exit_program 2 unzip
+command_exists git || exit_program 2 "git"
+command_exists zsh || exit_program 2 "zsh"
+command_exists pip || exit_program 2 "pip"
+command_exists curl || exit_program 2 "curl"
+command_exists wget || exit_program 2 "wget"
+command_exists unzip || exit_program 2 "unzip"
+
+# stash current config in yadm
+$(which yadm) stash
+
+# Install FiraCode Nerd Font
+git clone --filter=blob:none --sparse https://github.com/ryanoasis/nerd-fonts
+cd nerd-fonts
+git sparse-checkout add patched-fonts/FiraCode
+./install.sh FiraCode
+cd - # switch back to prev directory
 
 # starship prompt for bash & other shells 😊
 curl -sS https://starship.rs/install.sh | sh
 
-# install fnm and the latest lts release
-curl -fsSL https://fnm.vercel.app/install | bash
+# rustup installation
+curl https://sh.rustup.rs -sSf | sh -s -- -y
 
-# install pyenv and pipenv
-curl https://pyenv.run | sh
-pip install pipenv
+# cargo install packages
+$HOME/.cargo/bin/cargo install --quiet cargo-binstall
+$HOME/.cargo/bin/cargo-binstall --quiet rtx-cli bob-nvim
+
+# use specified nodejs version
+$HOME/.cargo/bin/rtx global $nodejs_version
+
+# use the latest stable neovim version
+$HOME/.cargo/bin/bob use $bob_nvim_version
 
 # install oh-my-zsh
 wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
@@ -56,7 +73,3 @@ rm install.sh
 
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
-pip install thefuck
-
-echo 'After installation, please use fnm to install the latest lts of nodejs. Enjoy!'
