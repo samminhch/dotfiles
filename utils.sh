@@ -91,7 +91,7 @@ get_loc()
 nvims()
 {
     # check if these commands exists
-    if command_exists nvim fzf grep;
+    if ! command_exists nvim fzf grep bc;
     then
         return 1
     fi
@@ -109,8 +109,8 @@ nvims()
 
 
     # add your neovim configuration names here
-    items=("🐸")
-    config=$(printf "$s\n" "${items[@]}" | fzf --prompt="im config  " --height=50% --layout=reverse --border --exit-0)
+    items=("🐸" "NvChad" "AstroNvim")
+    config=$(printf "%s\n" "${items[@]}" | fzf --prompt="im config  " --height=50% --layout=reverse --border --exit-0)
 
     if [[ -z $config ]];
     then
