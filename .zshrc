@@ -16,7 +16,6 @@ plugins=(
   gh
   git
   sudo
-  tmux
   zsh-autosuggestions
   zsh-syntax-highlighting
 )
@@ -44,7 +43,3 @@ source $HOME/vars.sh
 eval "$(starship init zsh)"
 
 eval "$($HOME/.cargo/bin/rtx activate zsh)"
-
-# start tmux session
-export ZSH_TMUX_AUTOSTART=true
-export ZSH_TMUX_UNICODE=true

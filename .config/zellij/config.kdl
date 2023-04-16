@@ -1,0 +1,12 @@
+// configuration information:
+// https://zellij.dev/documentation/options.html
+
+theme "everforest-dark-medium" 
+copy_command "wl-copy"                    // wayland
+pane_frames true
+ui {
+    pane_frames {
+        rounded_corners true
+    }
+}
+
