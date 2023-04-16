@@ -1,4 +1,8 @@
-# aliases
+source ./utils.sh
+
+###################
+# SETTING ALIASES #
+###################
 alias sudo='sudo '
 alias rm='rm -i'                                    # Ask before removing file
 alias mv='mv -i'                                    # Ask before moving file
@@ -22,50 +26,44 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # replace ls with lsd or exa
-if command -v lsd > /dev/null;
+if command_exists lsd;
 then
     alias ls='lsd '
-elif command -v exa > /dev/null;
+elif command_exists exa;
 then
     alias ls='exa '
 fi
 
-# add ~/.local/bin to PATH
-export PATH=$HOME/.local/bin:$PATH
-
-# add ~/.local/lib to PATH
-if [ -d "$HOME/.local/lib" ]
-then
-    export PATH="$HOME/.local/lib:$PATH"
-fi
-
 # helix alias
-if command -v helix &> /dev/null;
+if command_exists helix;
 then
     alias hx='helix'
 fi
 
 # apt is nala if nala is installed
-if command -v apt &> /dev/null && command -v nala &> /dev/null;
+if command_exists apt nala;
 then
     alias apt='nala'
 fi
 
-if command -v paru &> /dev/null;
+# i want happy
+if command_exists paru;
 then
     alias joy="paru "
 fi
+# Default editor is neovim
+if command_exists nvim;
+then
+    export EDITOR='nvim'
+fi
 
-# emacs binary library
+###########################
+# UPDATING PATH VARIABLES #
+########################### 
+#emacs binary library
 if [ -d "$HOME/.emacs.d/bin" ]
 then
     export PATH="$PATH:$HOME/.emacs.d/bin"
-fi
-
-# Default editor is neovim
-if command -v nvim &> /dev/null;
-then
-    export EDITOR='nvim'
 fi
 
 # Add cargo binaries
@@ -79,3 +77,15 @@ if [ -d "$HOME/.local/share/bob/nvim-bin" ]
 then
     export PATH="$PATH:$HOME/.local/share/bob/nvim-bin"
 fi
+# add ~/.local/bin to PATH
+if [ -d "$HOME/.local/bin" ];
+then
+    export PATH="$HOME/.local/bin:$PATH"
+fi
+
+# add ~/.local/lib to PATH
+if [ -d "$HOME/.local/lib" ]
+then
+    export PATH="$HOME/.local/lib:$PATH"
+fi
+
