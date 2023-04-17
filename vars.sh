@@ -26,28 +26,28 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # replace ls with lsd or exa
-if command_exists lsd;
+if command_exists -s lsd;
 then
     alias ls='lsd '
-elif command_exists exa;
+elif command_exists -s exa;
 then
     alias ls='exa '
 fi
 
 # helix alias
-if command_exists helix;
+if command_exists -s helix;
 then
     alias hx='helix'
 fi
 
 # apt is nala if nala is installed
-if command_exists apt nala;
+if command_exists -s apt nala;
 then
     alias apt='nala'
 fi
 
 # i want happy
-if command_exists paru;
+if command_exists -s paru;
 then
     alias joy="paru "
 
@@ -60,10 +60,10 @@ then
 fi
 
 # update alias!
-if command_exists powerpill paru;
+if command_exists -s powerpill paru;
 then
     alias update="sudo pacman -Sy && sudo powerpill -Su && paru -Su"
-elif command_exists powerpill yay;
+elif command_exists -s powerpill yay;
 then
     alias update="sudo pacman -Sy && sudo powerpill -Su && yay -Su"
 fi

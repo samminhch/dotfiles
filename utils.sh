@@ -63,15 +63,28 @@ ex()
 # from https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh
 command_exists() 
 {
+    local silent=false
+
     for cmd_name in "$@"; do
-        command -v "$cmd_name" > /dev/null
+        if [ "$cmd_name" = "-s" ] || [ "$cmd_name" = "--silent" ];
+        then
+            silent=true
+        fi
+
+        type -p "$cmd_name" > /dev/null
         local cmd_status=$?
 
         if [ "$cmd_status" -eq 0 ];
         then
-            print_okay "$cmd_name is an executable"
+            if [ "$silent" = false ];
+            then
+                print_okay "$cmd_name is an executable"
+            fi
         else
-            print_error "$cmd_name isn't an executable"
+            if [ "$silent" = false ];
+            then
+                print_error "$cmd_name isn't an executable"
+            fi
         fi
 
         local overall_status=$(( overall_status > cmd_status ? overall_status : cmd_status ))
