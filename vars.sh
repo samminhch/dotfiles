@@ -50,11 +50,22 @@ fi
 if command_exists paru;
 then
     alias joy="paru "
+
 fi
+
 # Default editor is neovim
-if command_exists nvim;
+if [ -f /usr/bin/nvim ] || [ -x $HOME/.local/share/bob/nvim-bin ];
 then
     export EDITOR='nvim'
+fi
+
+# update alias!
+if command_exists powerpill paru;
+then
+    alias update="sudo pacman -Sy && sudo powerpill -Su && paru -Su"
+elif command_exists powerpill yay;
+then
+    alias update="sudo pacman -Sy && sudo powerpill -Su && yay -Su"
 fi
 
 ###########################

@@ -64,8 +64,8 @@ ex()
 command_exists() 
 {
     for cmd_name in "$@"; do
-        command -v "$cmd_name" >/dev/null
-        cmd_status=$?
+        command -v "$cmd_name" > /dev/null
+        local cmd_status=$?
 
         if [ "$cmd_status" -eq 0 ];
         then
@@ -74,7 +74,7 @@ command_exists()
             print_error "$cmd_name isn't an executable"
         fi
 
-        overall_status=$(( overall_status > cmd_status ? overall_status : cmd_status ))
+        local overall_status=$(( overall_status > cmd_status ? overall_status : cmd_status ))
     done
 
     return $overall_status

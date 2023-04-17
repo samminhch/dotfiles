@@ -1,6 +1,6 @@
 #!/bin/sh
 
-dependencies=("git" "pip" "pipenv" "zsh" "curl" "wget" "unzip" "tmux")
+dependencies=("git" "pip" "pipenv" "zsh" "curl" "wget" "unzip" "tmux" "fzf" "bc")
 nodejs_version="nodejs@18.15.0"
 bob_nvim_version="latest"
 
@@ -71,7 +71,7 @@ command_exists()
 }
 
 # make sure that all dependencies are installed
-if ! command_exists git zsh pip curl wget unzip pipenv tmux;
+if ! command_exists git zsh pip curl wget unzip pipenv tmux fzf bc;
 then
     exit_program 2
 fi
