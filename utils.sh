@@ -69,6 +69,7 @@ command_exists()
         if [ "$cmd_name" = "-s" ] || [ "$cmd_name" = "--silent" ];
         then
             silent=true
+            continue
         fi
 
         type -p "$cmd_name" > /dev/null

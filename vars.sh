@@ -1,4 +1,4 @@
-source ./utils.sh
+source $HOME/utils.sh
 
 ###################
 # SETTING ALIASES #
