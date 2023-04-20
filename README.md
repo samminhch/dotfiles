@@ -29,6 +29,7 @@ Additionally, there are config files for these packages:
     - [ ] rtx-cli (for version management)
         - nodejs@18
     - [ ] bob-nvim (for neovim management)
+    - [ ] zellij (terminal multiplexer)
 - [ ] oh-my-zsh
     - [ ] zsh-autosuggestions
     - [ ] zsh-syntax-highlighting
@@ -42,7 +43,7 @@ Please follow the [installation guide](https://yadm.io/docs/install) to install 
 You should probably back up your current config, if you're using one. However, it's improtant to know that `.config/yadm/bootstrap` does `yadm stash` to preserve your current machine's configuration
 
 ```console
-yadm clone --recurse-submodules https://github.com/samminhch/dotfiles 
+yadm clone https://github.com/samminhch/dotfiles   # or git@github.com:samminhch/dotfiles
 yadm submodule update --init --recursive
 yadm stash
 ```
@@ -52,7 +53,7 @@ yadm stash
 ```sh
 sudo apt update
 sudo apt install -y git python3-pip curl zsh unzip yadm wget pipenv
-yadm clone https://github.com/samminhch/dotfiles 
+yadm clone https://github.com/samminhch/dotfiles   # or git@github.com:samminhch/dotfiles
 yadm submodule update --init --recursive
 ```
 
@@ -62,7 +63,7 @@ This snippet uses `paru` as the AUR helper, but you can use whatever one you wan
 ```sh
 paru # to update
 paru -S wget curl unzip yadm python-pipenv
-yadm clone https://github.com/samminhch/dotfiles 
+yadm clone https://github.com/samminhch/dotfiles   # or git@github.com:samminhch/dotfiles
 yadm submodule update --init --recursive
 ```
 

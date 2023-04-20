@@ -1,7 +1,8 @@
-#!/bin/sh
+#! /usr/bin/bash
 
 dependencies=("git" "pip" "pipenv" "zsh" "curl" "wget" "unzip" "tmux" "fzf" "bc")
-nodejs_version="nodejs@18.15.0"
+nodejs_version="nodejs@18.16.0"
+node_version="node@18.16.0"
 bob_nvim_version="latest"
 
 print_error()
@@ -113,10 +114,16 @@ print_warn "Installing bob-nvim..."
 $HOME/.cargo/bin/cargo-binstall -y bob-nvim
 print_okay "bob-nvim installed!"
 
+print_warn "Installing zellij..."
+$HOME/.cargo/bin/cargo-binstall -y zellij
+print_okay "zellij installed!"
+
 # use specified nodejs version
 print_warn "Installing $nodejs_version via rtx-cli..."
-$HOME/.cargo/bin/rtx install $nodejs_version
-$HOME/.cargo/bin/rtx global $nodejs_version
+$HOME/.cargo/bin/rtx install "$nodejs_version"
+$HOME/.cargo/bin/rtx install "$node_version"
+$HOME/.cargo/bin/rtx global "$nodejs_version"
+$HOME/.cargo/bin/rtx global "$node_version"
 print_okay "$nodejs_version installed!"
 
 # use the latest stable neovim version
@@ -140,3 +147,8 @@ print_okay "Installed!"
 print_warn "Installing tmux plugin manager..."
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 print_okay "Installed!"
+
+printf "%s\n" "█▀ █▀▀ ▀█▀ █ █ █▀█   █▀▀ █▀█ █▀▄▀█ █▀█ █   █▀▀ ▀█▀ █▀▀" \
+              "▄█ ██▄  █  █▄█ █▀▀   █▄▄ █▄█ █ ▀ █ █▀▀ █▄▄ ██▄  █  ██▄" \
+              "──────────────────────────────────────────────────────"  \
+              "Go ahead and reload your shell, and you should be good to go\!"
