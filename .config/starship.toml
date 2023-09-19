@@ -1,30 +1,13 @@
 format = """
 ┌\
 [](#21282C)\
-$username\
+$username$hostname\
 [](bg:#404D44 fg:#21282C)\
 $directory\
-[](fg:#404D44 bg:#5a6f5a)\
+[](fg:#404D44 bg:#81986D)\
 $git_branch\
 $git_status\
-[](fg:#5a6f5a bg:#81986D)\
-$c\
-$python\
-$java\
-$javascript\
-$elixir\
-$elm\
-$golang\
-$haskell\
-$julia\
-$nodejs\
-$nim\
-$rust\
-$scala\
-[](fg:#81986D bg:#81986D)\
-$docker_context\
 [](fg:#81986D bg:#E67E80)\
-$time\
 $status\
 [ ](fg:#E67E80)
 └─▶\
@@ -36,12 +19,20 @@ $status\
 # You can also replace your username with a neat symbol like  to save some space
 [username]
 show_always = true
-style_user = "bg:#21282C"
-style_root = "bg:#21282C"
+style_user = "bg:#21282C bold white"
+style_root = "bg:#21282C bold white"
 format = '[$user]($style)'
 
+[hostname]
+style = 'bg:#21282C'
+ssh_only = false
+format = '[$ssh_symbol@$hostname](bold white bg:#21282C)'
+trim_at = '.companyname.com'
+disabled = false
+
+
 [directory]
-style = "bg:#404D44"
+style = "bg:#404D44 bold white"
 format = "[ $path ]($style)"
 truncation_length = 3
 truncation_symbol = "…/"
@@ -59,86 +50,24 @@ truncation_symbol = "…/"
 # So either put "Important Documents" before "Documents" or use the substituted version:
 # "Important  " = "  "
 
-[c]
-symbol = " "
-style = "bg:#81986D"
-format = '[ $symbol ($version) ]($style)'
-
-[docker_context]
-symbol = " "
-style = "bg:#94AC77"
-format = '[ $symbol $context ]($style) $path'
-
-[elixir]
-symbol = " "
-style = "bg:#81986D"
-format = '[ $symbol ($version) ]($style)'
-
-[elm]
-symbol = " "
-style = "bg:#81986D"
-format = '[ $symbol ($version) ]($style)'
-
 [git_branch]
-symbol = ""
-style = "bg:#5a6f5a"
-format = '[ $symbol $branch ]($style)'
+style = 'bg:#81986D bold white'
+format = '[ on $symbol$branch(:$remote_branch)]($style)'
 
 [git_status]
-style = "bg:#5a6f5a"
-format = '[$all_status$ahead_behind ]($style)'
+style = 'bg:#81986D bold white'
+format = '([\[$all_status$ahead_behind\]]($style))'
 
-[golang]
-symbol = " "
-style = "bg:#81986D"
-format = '[ $symbol ($version) ]($style)'
-
-[haskell]
-symbol = " "
-style = "bg:#81986D"
-format = '[ $symbol ($version) ]($style)'
-
-[java]
-symbol = " "
-style = "bg:#81986D"
-format = '[ $symbol ($version) ]($style)'
-
-[julia]
-symbol = " "
-style = "bg:#81986D"
-format = '[ $symbol ($version) ]($style)'
-
-[nodejs]
-format = '[ $symbol ](bg:#81986D)'
-
-[nim]
-symbol = " "
-style = "bg:#81986D"
-format = '[ $symbol ($version) ]($style)'
-
-[rust]
-symbol = ""
-style = "bg:#81986D"
-format = '[ $symbol ($version) ]($style)'
-
-[scala]
-symbol = " "
-style = "bg:#81986D"
-format = '[ $symbol ($version) ]($style)'
-
-[python]
-style = "bg:#81986D"
-format = '[ $symbol ($version) ]($style)'
 
 [time]
 disabled = true
 time_format = "%R" # Hour:Minute Format
-style = "bg:#E67E80"
-format = '[ ♥ $time ]($style)'
+style = "bg:#E67E80 bold white"
+format = '[🕑️ $time]($style)'
 
 [status]
 disabled = false
 symbol = '✖'
 success_symbol = '✔'
-style = "bg:#E67E80"
-format = "[ $symbol ]($style)"
+style = "bg:#E67E80 bold"
+format = "[ $symbol]($style)"
