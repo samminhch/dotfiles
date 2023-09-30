@@ -11,5 +11,21 @@ name = "rust"
 command = "rustup"
 args = ["run", "stable", "rust-analyzer"]
 
-[language.config.check]
+[language.config.check] 
 command = "clippy"
+
+[[language]]
+name = "java"
+roots = [".git", "", "pom.xml", "build.gradle", "build.gradle.kts"]
+
+# [language.language-server]
+# command = "java"
+# args = ["-Declipse.application=org.eclipse.jdt.ls.core.id1", "-Dosgi.bundles.defaultStartLevel=4", "-Declipse.product=org.eclipse.jdt.ls.core.product","-Dosgi.checkConfiguration=true", "-Dosgi.sharedConfiguration.area=/usr/share/java/jdtls/config_linux", "-Dosgi.sharedConfiguration.area.readOnly=true", "-Dosgi.configuration.cascaded=true", "-noverify", "-Xms1G", "-jar /usr/share/java/jdtls/plugins/org.eclipse.equinox.launcher_*.jar", "-configuration /usr/share/java/jdtls/config_linux"]
+
+[[language]]
+name = "cpp"
+indent = {tab-width = 4, unit = " "}
+
+[[language]]
+name = "latex"
+config = {build = {"executable" = "lualatex", "args" = ["--interaction=nonstopmode", "--synctex=1"], "onSave" = true}}

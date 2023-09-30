@@ -1,19 +1,31 @@
 theme = "everforest_dark"
 
 [editor]
-color-modes = true
-line-number = "relative"
-cursorline  = true
-bufferline  = "multiple"
+color-modes        = true
+line-number        = "relative"
+cursorline         = true
+bufferline         = "multiple"
+auto-save          = true
+auto-format        = true
+soft-wrap.enable   = true
+gutters            = ["diagnostics", "spacer", "line-numbers", "spacer", "diff"]
+
 
 [editor.file-picker]
 hidden = false
 
 [editor.indent-guides]
-render = true
+render    = true
 character = "╎"
 
 [editor.lsp]
-display-messages = false
+display-messages    = true
 display-inlay-hints = true
 
+[keys.normal]
+# swapping a single line
+A-j = ["extend_line", "delete_selection", "move_line_down", "paste_before", "move_line_down", "move_line_up"]
+A-k = ["extend_line", "delete_selection", "move_line_up", "paste_before", "move_line_down", "move_line_up"]
+# moving between buffers
+H   = ":buffer-previous"
+L   = ":buffer-next"
