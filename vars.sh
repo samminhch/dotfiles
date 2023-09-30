@@ -25,13 +25,21 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
+if [ -x /usr/bin/bat ];
+then
+alias bathelp='bat --plain --language=help'
+help() {
+    "$@" --help 2>&1 | bat --plain --language=help
+}
+fi
+
 # replace ls with lsd or exa
 if command_exists -s lsd;
 then
     alias ls='lsd '
 elif command_exists -s exa;
 then
-    alias ls='exa '
+    alias ls='exa -h --group-directories-first --icons --hyperlink --git'
 fi
 
 # helix alias
@@ -100,3 +108,16 @@ then
     export PATH="$HOME/.local/lib:$PATH"
 fi
 
+export PATH=$PATH:$HOME/.spicetify
+
+
+# Load Angular CLI autocompletion.
+source <($HOME/.local/share/rtx/installs/nodejs/18.15.0/bin/ng completion script)
+
+# pnpm
+export PNPM_HOME="/home/samminhch/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
