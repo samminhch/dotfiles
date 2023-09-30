@@ -19,31 +19,31 @@ $status\
 # You can also replace your username with a neat symbol like  to save some space
 [username]
 show_always = true
-style_user = "bg:#21282C bold white"
-style_root = "bg:#21282C bold white"
-format = '[$user]($style)'
+style_user  = "bg:#21282C bold white"
+style_root  = "bg:#21282C bold white"
+format      = '[$user]($style)'
 
 [hostname]
-style = 'bg:#21282C'
+style    = 'bg:#21282C'
 ssh_only = false
-format = '[$ssh_symbol@$hostname](bold white bg:#21282C)'
-trim_at = '.companyname.com'
+format   = '[$ssh_symbol@$hostname](bold white bg:#21282C)'
+trim_at  = '.companyname.com'
 disabled = false
 
 
 [directory]
-style = "bg:#404D44 bold white"
-format = "[ $path ]($style)"
+style             = "bg:#404D44 bold white"
+format            = "[ $path ]($style)"
 truncation_length = 3
 truncation_symbol = "…/"
 
 # Here is how you can shorten some long paths by text replacement
 # similar to mapped_locations in Oh My Posh:
 [directory.substitutions]
-"Documents" = " "
+"Documents" = "󰈙"
 "Downloads" = " "
-"Music" = " "
-"Pictures" = " "
+"Music"     = " "
+"Pictures"  = " "
 # Keep in mind that the order matters. For example:
 # "Important Documents" = "  "
 # will not be replaced, because "Documents" was already substituted before.
