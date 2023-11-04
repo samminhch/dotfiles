@@ -1,0 +1,67 @@
+* {
+  font-family: ComicShannsMono Nerd Font Propo;
+  font-size: 18px;
+  color: #D3C6AA;
+}
+
+window#waybar {
+  background: rgba(0, 0, 0, 0);
+}
+
+tooltip {
+  background: #3D484D;
+  border: 2px solid #D3C6AA;
+}
+
+/* Set workspace text color and padding */
+#workspaces button {
+  padding: 2px;
+}
+
+/* Sets background, padding, margins, and borders for (all) modules */
+#workspaces,
+#network,
+#tray,
+#idle_inhibitor,
+#clock,
+#window,
+#wireplumber,
+#bluetooth,
+#backlight,
+#battery {
+  background: #1E2326;
+  padding: 2px 10px;
+}
+
+/* Custom modules w/ no padding */
+#custom-pad_out_left,
+#custom-pad_in_left,
+#custom-pad_out_right,
+#custom-pad_in_right {
+  background: #1E2326;
+}
+
+/* Rounding only on right of module(s) */
+
+#workspaces {
+  border-radius: 16px;
+}
+
+/* Rounding only of left of module(s) */
+#custom-pad_out_left {
+  border-radius: 16px 0 0 16px;
+}
+
+#custom-pad_in_left {
+  border-radius: 8px 0 0 16px;
+  margin-left: 2px;
+}
+
+#custom-pad_out_right {
+  border-radius: 0 16px 16px 0;
+}
+
+#custom-pad_in_right {
+  border-radius: 0 8px 8px 0;
+  margin-right: 2px;
+}

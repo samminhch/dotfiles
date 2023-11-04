@@ -1,0 +1,39 @@
+configuration {
+  modes: [ combi, drun, run];
+  combi-modes: [ window, drun, run];
+  modi: "drun,run,filebrowser,window";
+
+  font: "ComicShanns Mono Nerd Font Propo 14";
+  show-icons: true;
+  sort: true;
+  hover-select: true;
+  window-thumbnail: true;
+  drun-use-desktop-cache: true;
+
+
+  window-format: "{w}  {c}  {t}";
+  display-ssh: "";
+  display-run: "";
+  display-drun: "";
+  display-window: "";
+  display-combi: "";
+  display-filebrowser: "";
+  display-clipboard: "󰅌";
+  show-icons: true;
+
+  terminal: "wezterm";
+
+  drun-reload-desktop-cache: true;
+
+  timeout {
+    action: "kb-cancel";
+    delay: 0;
+  }
+
+  filebrowser {
+    directories-first: true;
+    sorting-method: "name";
+  }
+}
+
+@theme "everforest-dark-hard"

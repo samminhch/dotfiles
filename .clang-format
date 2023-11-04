@@ -20,6 +20,8 @@ AllowShortEnumsOnASingleLine: true
 BinPackArguments: true
 BinPackParameters: true
 BitFieldColonSpacing: After
+BreakStringLiterals: true
+# BreakTemplateDeclarationsStyle: Multiline
 ColumnLimit: 80
 # EmptyLineBeforeAccessModifierStyle: LogicalBlock
 IndentAccessModifiers: true

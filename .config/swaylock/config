@@ -1,0 +1,27 @@
+screenshots
+submit-on-touch
+clock
+indicator
+font=Comic Sans MS
+show-failed-attempts
+datestr=%x
+grace=2
+effect-blur=7x5
+effect-vignette=0.5x0.5
+separator-color=495156
+line-uses-ring
+key-hl-color=a7c080
+inside-color=272e33
+inside-wrong-color=272e33
+inside-ver-color=272e33
+inside-clear-color=272e33
+ring-color=495156
+ring-wrong-color=E67E80
+ring-ver-color=7fbbb3
+ring-clear-color=dbbc7f
+fade-in=0.25
+text-color=d3c6aa
+text-caps-lock-color=d3c6aa
+text-clear-color=d3c6aa
+text-ver-color=d3c6aa
+text-wrong-color=d3c6aa

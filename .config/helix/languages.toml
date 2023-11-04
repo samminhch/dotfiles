@@ -1,31 +1,111 @@
 [[language]]
+name = "bash"
+indent = { tab-width = 4, unit = "    " }
+formatter = { command = 'shfmt', args = ["-i", "4"] }
+auto-format = true
+
+
+[[language]]
+name = "nu"
+indent = { tab-width = 4, unit = "    " }
+
+
+[[language]]
 name = "python"
-roots = ["pyproject.toml"]
-language-server = { command = "pyright-langserver", args = ["--stdio"] }
-config = {} # <- this is the important line
+language-servers = ["pyright"]
+
 
 [[language]]
 name = "rust"
 
-[language.language-server]
-command = "rustup"
-args = ["run", "stable", "rust-analyzer"]
-
-[language.config.check] 
+[language-server.rust-analyzer.config.check]
 command = "clippy"
+
 
 [[language]]
 name = "java"
-roots = [".git", "", "pom.xml", "build.gradle", "build.gradle.kts"]
+language-servers = ["jdtls"]
+indent = { tab-width = 4, unit = "    " }
 
-# [language.language-server]
-# command = "java"
-# args = ["-Declipse.application=org.eclipse.jdt.ls.core.id1", "-Dosgi.bundles.defaultStartLevel=4", "-Declipse.product=org.eclipse.jdt.ls.core.product","-Dosgi.checkConfiguration=true", "-Dosgi.sharedConfiguration.area=/usr/share/java/jdtls/config_linux", "-Dosgi.sharedConfiguration.area.readOnly=true", "-Dosgi.configuration.cascaded=true", "-noverify", "-Xms1G", "-jar /usr/share/java/jdtls/plugins/org.eclipse.equinox.launcher_*.jar", "-configuration /usr/share/java/jdtls/config_linux"]
+[language-server.jdtls.config.java.jdt.ls.java]
+home = '/usr/lib/jvm/java-17-openjdk'
+
 
 [[language]]
 name = "cpp"
-indent = {tab-width = 4, unit = " "}
+indent = { tab-width = 4, unit = "    " }
+auto-format = true
+
+[language.formatter]
+command = "clang-format"
+
+
+[[language]]
+name = "arduino"
+scope = "source.arduino"
+injection-regex = "arduino"
+file-types = ["ino", "cpp", "h"]
+comment-token = "//"
+roots = ["sketch.yaml"]
+language-servers = ["arduino-language-server"]
+indent = { tab-width = 4, unit = "    " }
+
+[language.formatter]
+command = "clang-format"
+
+[language-server.arduino-language-server]
+command = "arduino-language-server"
+args = ["-fqbn", "arduino:avr:uno"]
+
+[[grammar]]
+name = "arduino"
+source = { git = "https://github.com/ObserverOfTime/tree-sitter-arduino", rev = "db929fc6822b9b9e1211678d508f187894ce0345" }
+
 
 [[language]]
 name = "latex"
-config = {build = {"executable" = "lualatex", "args" = ["--interaction=nonstopmode", "--synctex=1"], "onSave" = true}}
+# auto-format = true
+
+[language-server.texlab.config.texlab.build]
+onSave = true
+executable = "latexmk"
+args = [
+  "-lualatex",
+  "-f",
+  "-output-directory=build",
+  "--synctex=1",
+  "-interaction=nonstopmode",
+  "%f",
+]
+
+[language-server.texlab.config.texlab.chktex]
+onEdit = true
+onOpenAndSave = true
+
+[language-server.texlab.config.texlab]
+auxDirectory = "build"
+
+
+[[language]]
+name = "toml"
+
+[language-server.taplo]
+command = "taplo"
+args = ["lsp", "stdio"]
+
+[language.formatter]
+command = "taplo"
+args = ["fmt", "-c ~/.config/helix/.taplo.toml", "-"]
+auto-format = true
+
+
+[[language]]
+name = "markdown"
+auto-format = true
+
+[language-server.mdpls]
+command = "mdpls" # enable if editing wiki markdown files 
+
+# [language.formatter]
+# command = "dprint"
+# args = ["fmt", "--stdin", "md"]

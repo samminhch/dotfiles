@@ -1,5 +1,5 @@
 format = """
-┌\
+[┌](fg:bold white)\
 [](#21282C)\
 $username$hostname\
 [](bg:#404D44 fg:#21282C)\
@@ -10,7 +10,7 @@ $git_status\
 [](fg:#81986D bg:#E67E80)\
 $status\
 [ ](fg:#E67E80)
-└─▶\
+[└─󰛿 ](fg:bold white)\
 """
 
 # Disable the blank line at the start of the prompt

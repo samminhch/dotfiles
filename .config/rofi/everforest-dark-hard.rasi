@@ -1,0 +1,168 @@
+* {
+  bg-dim: #1E2326;
+  bg-0: #272E33AA;
+  bg-1: #2E383C;
+  bg-2: #374145;
+  bg-3: #414b50;
+  bg-4: #495156;
+  bg-5: #4F5B58;
+  bg-red: #4C3743;
+  bg-green: #3C4841;
+  bg-blue: #384B55;
+  bg-yellow: #45443C;
+  fg: #D3C6AA;
+  fg-red: #E67E80;
+  fg-orange: #E69875;
+  fg-yellow: #DBBC7F;
+  fg-green: #A7C080;
+  fg-aqua: #83C092;
+  fg-blue: #7EB9B2;
+  fg-purple: #D397B3;
+  gray-0: #7A8478;
+  gray-1: #0C1117;
+  gray-2: #9CA89F;
+}
+
+window {
+  border: 3px;
+  border-radius: 16px;
+  background-color: var(bg-0);
+  border-color: var(fg-green);
+  width: 35%;
+}
+
+mainbox {
+  padding: 1em;
+  background-color: transparent;
+}
+
+inputbar {
+  background-color: #fffbef;
+  border-color: var(gray-2);
+  border: 0 0 6px 0;
+  border-radius: 8px;
+  margin: 0 0 1em 0;
+  children: [ textbox-prompt-colon, entry, mode-switcher];
+  padding: 0.65em;
+}
+
+prompt {
+  background-color: @fg-blue;
+  text-color: @bg-2;
+  border: 4px;
+  border-radius: 8px;
+  padding: 2px 4px;
+}
+
+textbox-prompt-colon {
+  enabled: true;
+  padding: 5px 0px;
+  expand: false;
+  str: "";
+  background-color: inherit;
+  text-color: @bg-2;
+  margin: 4px 0 0 0;
+}
+
+mode-switcher {
+  enabled: true;
+  spacing: 12px;
+  margin: 0px;
+  border-radius: 8px;
+  background-color: transparent;
+}
+
+button {
+  padding: 5px 10px;
+  background-color: @fg-blue;
+  text-color: @bg-blue;
+  cursor: pointer;
+  expand: false;
+  border-radius: 8px;
+  border: 0 0 5px 0;
+  border-color: @bg-blue;
+}
+
+button selected {
+  text-color: @fg;
+  background-color: var(bg-blue);
+}
+
+entry {
+  background-color: transparent;
+  padding: 6px;
+  text-color: @bg-2;
+  placeholder-color: @gray-0;
+  margin: 4px 0 0 0;
+}
+
+message {
+  enabled: true;
+  margin: 0px;
+  padding: 0px;
+  border: 0px solid;
+  border-radius: 0px 0px 0px 0px;
+  border-color: @fg-blue;
+  background-color: transparent;
+  text-color: @fg;
+}
+
+textbox {
+  padding: 8px 10px;
+  border: 0px solid;
+  border-radius: 10px;
+  border-color: @fg-blue;
+  background-color: transparent;
+  text-color: @fg;
+  vertical-align: 0.5;
+  horizontal-align: 0.0;
+  highlight: none;
+  placeholder-color: @fg;
+  blink: true;
+  markup: true;
+}
+
+listview {
+  background-color: transparent;
+  fixed-height: false;
+  lines: 4;
+}
+
+element {
+  padding: 8px 16px;
+  spacing: 8px;
+  background-color: transparent;
+}
+
+element-icon {
+  size: 2em;
+  vertical-align: 0.5;
+  background-color: transparent;
+  text-color: @fg;
+}
+
+element-text {
+  vertical-align: 0.5;
+  background-color: transparent;
+  text-color: @fg;
+}
+
+element normal urgent {
+  text-color: @fg-red;
+}
+
+element normal active {
+  text-color: @fg-green;
+}
+
+element selected {
+  background-color: @bg-green;
+  text-color: @bg-0;
+  border-radius: 8px;
+  border: 2px;
+  border-color: @fg-green;
+}
+
+element selected urgent {
+  background-color: @bg-red;
+}
