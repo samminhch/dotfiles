@@ -9,7 +9,7 @@ window#waybar {
 }
 
 tooltip {
-  background: #3D484D;
+  background: #272E33;
   border: 2px solid #D3C6AA;
 }
 
@@ -33,32 +33,48 @@ tooltip {
   padding: 2px 10px;
 }
 
-/* Custom modules w/ no padding */
-#custom-pad_out_left,
-#custom-pad_in_left,
-#custom-pad_out_right,
-#custom-pad_in_right {
-  background: #1E2326;
-}
-
 /* Rounding only on right of module(s) */
 
 #workspaces {
-  border-radius: 16px;
+  border-radius: 20px;
 }
 
 /* Rounding only of left of module(s) */
-#custom-pad_out_left {
-  border-radius: 16px 0 0 16px;
+#idle_inhibitor,
+#tray {
+  border-radius: 20px 8px 8px 20px;
+  margin-right: 2px;
+  padding-left: 12px;
 }
 
-#custom-pad_in_left {
-  border-radius: 8px 0 0 16px;
+#backlight {
+  border-radius: 8px 0 0 8px;
   margin-left: 2px;
 }
 
-#custom-pad_out_right {
-  border-radius: 0 16px 16px 0;
+#network {
+  border-radius: 0 8px 8px 0;
+  margin-right: 2px;
+}
+
+#bluetooth {
+  border-radius: 8px 0 0 8px;
+  margin-left: 2px;
+}
+
+#battery {
+  margin-left: 2px;
+  border-radius: 8px 20px 20px 8px;
+}
+
+#wireplumber {
+  border-radius: 0 20px 20px 0;
+}
+
+#clock {
+  border-radius: 8px;
+  margin-left: 2px;
+  margin-right: 2px;
 }
 
 #custom-pad_in_right {

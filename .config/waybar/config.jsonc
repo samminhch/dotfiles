@@ -10,28 +10,16 @@
     "hyprland/workspaces"
   ],
   "modules-center": [
-    "custom/pad_out_left",
     "idle_inhibitor",
-    "custom/pad_in_right",
-    "custom/pad_in_left",
     "clock",
-    "custom/pad_in_right",
-    "custom/pad_in_left",
     "battery",
-    "custom/pad_out_right"
   ],
   "modules-right": [
-    "custom/pad_out_left",
     "tray",
-    "custom/pad_in_right",
-    "custom/pad_in_left",
     "bluetooth",
     "network",
-    "custom/pad_in_right",
-    "custom/pad_in_left",
     "backlight",
     "wireplumber",
-    "custom/pad_out_right"
   ],
   "hyprland/workspaces": {
     "format": "{icon}",
@@ -118,7 +106,7 @@
     "tooltip-format": "󰂯 {controller_alias}",
     "tooltip-format-connected": "󰂱 {device_enumerate}",
     "tooltip-format-enumerate-connected": "{device_alias}",
-    "on-click": "blueman-manager"
+    "on-click": "overskride"
   },
   "backlight": {
     "device": "intel_backlight",
@@ -132,7 +120,7 @@
   },
   "wireplumber": {
     "format": "{icon}{volume}%",
-    "format-muted": "婢 {volume}%",
+    "format-muted": "󰖁 {volume}%",
     "format-icons": [
       " ",
       " ",
