@@ -1,7 +1,8 @@
 inherits = "base16_transparent"
 
 "ui.popup" = { fg = "white", bg = "background_dimmed"}
-"ui.statusline" = { fg = "white", bg = "black" }
+"ui.statusline" = { fg = "white", bg = "background_dimmed" }
+"ui.menu" = { fg = "white", bg = "background_dimmed" }
 
 [palette]
 background_dimmed = "#1E2326"
