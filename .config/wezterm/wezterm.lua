@@ -19,8 +19,17 @@ return {
     hide_tab_bar_if_only_one_tab = true,
     window_background_opacity = 0.67,
     font = wezterm.font_with_fallback({
-        "ComicShannsMono Nerd Font Propo",
-        "Twemoji" -- emoji fonts :D
+        -- {
+        --     family = "Monaspace Neon",
+        --     harfbuzz_features = { 'ss01=1', 'ss02=1', 'ss03=1', 'ss04=1', 'ss05=1', 'ss07=1', 'calt=1' },
+        -- },
+        -- {
+        --     family = "Intel One Mono",
+        --     harfbuzz_features = { 'ss11=1' }
+        -- },
+        "ComicShannsMono Nerd Font Mono",
+        "Symbols Nerd Font",
+        "Noto Color Emoji" -- emoji fonts :D
     }),
     font_size = 14,
     color_scheme = "everforest";
