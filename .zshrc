@@ -16,39 +16,26 @@ plugins=(
     gh
     git
     sudo
+    zsh-alias-finder
     zsh-autosuggestions
     zsh-syntax-highlighting
 )
 
+export ZSH_ALIAS_FINDER_PREFIX=💡
 source $ZSH/oh-my-zsh.sh
 
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8
 
-# Preferred editor for local and remote sessions
-if [[ -n $SSH_CONNECTION ]]; then
-    export EDITOR='nvim'
-else
-    export EDITOR='vim'
-fi
-
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-# enable my custom shell files
+# source custom shell files
 source $HOME/utils.sh
 source $HOME/vars.sh
 
 # Enable starship prompt
 eval "$(starship init zsh)"
-
-# pnpm
-export PNPM_HOME="/home/samminhch/.local/share/pnpm"
-case ":$PATH:" in
-*":$PNPM_HOME:"*) ;;
-*) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-# pnpm end
 
 # default blinking cursor
 echo '\e[1 q'
