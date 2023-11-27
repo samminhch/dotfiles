@@ -26,6 +26,7 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 if [ -x /usr/bin/bat ]; then
+    export BAT_THEME="ansi"
     alias bathelp='bat --plain --language=help'
     help() {
         "$@" --help 2>&1 | bat --plain --language=help
