@@ -21,6 +21,7 @@ BinPackArguments: true
 BinPackParameters: true
 BitFieldColonSpacing: After
 BreakStringLiterals: true
+BreakBeforeBraces: Allman
 # BreakTemplateDeclarationsStyle: Multiline
 ColumnLimit: 80
 # EmptyLineBeforeAccessModifierStyle: LogicalBlock
