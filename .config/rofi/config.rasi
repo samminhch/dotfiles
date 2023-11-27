@@ -1,7 +1,5 @@
 configuration {
-  modes: [ combi, drun, run];
-  combi-modes: [ window, drun, run];
-  modi: "drun,run,filebrowser,window";
+  modes: "drun,run,window";
 
   font: "ComicShanns Mono Nerd Font Propo 14";
   show-icons: true;
@@ -9,7 +7,6 @@ configuration {
   hover-select: true;
   window-thumbnail: true;
   drun-use-desktop-cache: true;
-
 
   window-format: "{w}  {c}  {t}";
   display-ssh: "";
@@ -34,6 +31,9 @@ configuration {
     directories-first: true;
     sorting-method: "name";
   }
-}
 
+  window {
+      close-on-delete: true;
+  }
+}
 @theme "everforest-dark-hard"

@@ -1,0 +1,13 @@
+window {
+	width: 25%;
+	x-offset: -10px;
+	y-offset: 10px;
+}
+
+inputbar {
+	padding: 0.25em;
+}
+
+listview {
+  lines: 8;
+}
