@@ -11,6 +11,7 @@ window#waybar {
 tooltip {
   background: #272E33;
   border: 2px solid #D3C6AA;
+  box-shadow: 0 0 2px 3px rgba(30, 35, 38, 0.35);
 }
 
 /* Set workspace text color and padding */
@@ -28,8 +29,9 @@ tooltip {
 #wireplumber,
 #bluetooth,
 #backlight,
+#custom-media,
 #battery {
-  background: #1E2326;
+  background: rgba(30, 35, 38, 0.35);
   padding: 2px 10px;
 }
 
@@ -71,13 +73,9 @@ tooltip {
   border-radius: 0 20px 20px 0;
 }
 
-#clock {
+#clock,
+#custom-media {
   border-radius: 8px;
   margin-left: 2px;
-  margin-right: 2px;
-}
-
-#custom-pad_in_right {
-  border-radius: 0 8px 8px 0;
   margin-right: 2px;
 }

@@ -16,6 +16,7 @@
   ],
   "modules-right": [
     "tray",
+    // "custom/media",
     "bluetooth",
     "network",
     "backlight",
@@ -39,7 +40,7 @@
   },
   "clock": {
     "format": "󰥔 {:%H:%M}",
-    "format-alt": "󰥔 {:%H:%M  󰃭 %a %b %d %Y}",
+    "format-alt": "󰥔 {:%H:%M  󰃭 %d-%m-%Y}",
     "tooltip-format": "{calendar}",
     "calendar": {
       "mode": "month",
@@ -74,7 +75,6 @@
     "format": "{icon} {capacity}%",
     "format-charging": " {capacity}%",
     "format-plugged": "  {capacity}%",
-    "format-alt": "{icon} {time}",
     "format-icons": [
       "󰂎",
       "󰁺",
@@ -90,13 +90,21 @@
     ]
   },
   "network": {
-    "format-wifi": "󰤨 {essid}",
+    "format-wifi": "{icon} {essid}",
     "format-ethernet": "󱘖 Wired",
     "tooltip-format": " {bandwidthDownBytes}  {bandwidthUpBytes}",
     "format-linked": "󱘖 {ifname} (No IP)",
-    "format-disconnected": " Disconnected",
+    "format-disconnected": "  Disconnected",
+    "format-disabled": "󰤭 Disabled",
+    "format-icons": [
+      "󰤯",
+      "󰤟",
+      "󰤢",
+      "󰤥",
+      "󰤨",
+    ],
     "interval": 5,
-    "on-click": "sh ~/.config/wofi/wifi.sh"
+    "on-click-right": "sh ~/.config/rofi/scripts/wifi.sh"
   },
   "bluetooth": {
     "format": "󰂯",
@@ -106,7 +114,7 @@
     "tooltip-format": "󰂯 {controller_alias}",
     "tooltip-format-connected": "󰂱 {device_enumerate}",
     "tooltip-format-enumerate-connected": "{device_alias}",
-    "on-click": "overskride"
+    "on-click-right": "blueman-manager"
   },
   "backlight": {
     "device": "intel_backlight",
@@ -127,7 +135,7 @@
       " "
     ],
     "tooltip-format": "{icon}{node_name}",
-    "on-click": "pavucontrol"
+    "on-click-right": "pavucontrol"
   },
   "custom/pad_in_left": {
     "format": " ",
@@ -144,5 +152,22 @@
   "custom/pad_out_right": {
     "format": " ",
     "tooltip": false
-  }
+  },
+  "custom/media": {
+    "format": "{icon} {}",
+    "format-icons": {
+    "Playing": "",
+    "Paused": ""
+  },
+    "escape": true,
+    "return-type": "json",
+    "max-length": 40,
+    "on-click": "playerctl play-pause",
+    "on-click-right": "playerctl stop",
+    "smooth-scrolling-threshold": 10, // This value was tested using a trackpad, it should be lowered if using a mouse.
+    "on-scroll-up": "playerctl next",
+    "on-scroll-down": "playerctl previous",
+    "exec": "$HOME/.config/waybar/scripts/mediaplayer.py 2> /dev/null", // Script in resources/custom_modules folder
+
+}
 }
