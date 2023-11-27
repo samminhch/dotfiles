@@ -2,6 +2,10 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
+# Source files
+source ~/vars.sh
+source ~/utils.sh
+
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
@@ -85,16 +89,9 @@ fi
 export NVS_HOME="$HOME/.nvs"
 [ -s "$NVS_HOME/nvs.sh" ] && . "$NVS_HOME/nvs.sh"
 
-# Source files
-source ~/vars.sh
-source ~/utils.sh
 
 # Enable starship prompt
 if command -v starship &> /dev/null;
 then
     eval "$(starship init bash)"
 fi
-
-if [ -e "$HOME/.cargo/env" ];
-then
-    fi
