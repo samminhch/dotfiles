@@ -1,13 +1,13 @@
 format = """
 [┌](fg:bold white)\
-[](#21282C)\
+[](#A7C080)\
 $username$hostname\
-[](bg:#404D44 fg:#21282C)\
+[](bg:#DBBC7F fg:#A7C080)\
 $directory\
-[](fg:#404D44 bg:#81986D)\
+[](fg:#DBBC7F bg:#7FBBB3)\
 $git_branch\
 $git_status\
-[](fg:#81986D bg:#E67E80)\
+[](fg:#7FBBB3 bg:#E67E80)\
 $status\
 [ ](fg:#E67E80)
 [└─󰛿 ](fg:bold white)\
@@ -19,20 +19,20 @@ $status\
 # You can also replace your username with a neat symbol like  to save some space
 [username]
 show_always = true
-style_user  = "bg:#21282C bold white"
-style_root  = "bg:#21282C bold white"
+style_user  = "bg:#A7C080 bold black"
+style_root  = "bg:#A7C080 bold black"
 format      = '[$user]($style)'
 
 [hostname]
-style    = 'bg:#21282C'
+style    = "bg:#A7C080 bold black"
 ssh_only = false
-format   = '[$ssh_symbol@$hostname](bold white bg:#21282C)'
+format   = '[$ssh_symbol@$hostname](bold black bg:#A7C080)'
 trim_at  = '.companyname.com'
 disabled = false
 
 
 [directory]
-style             = "bg:#404D44 bold white"
+style             = "bg:#DBBC7F bold black"
 format            = "[ $path ]($style)"
 truncation_length = 3
 truncation_symbol = "…/"
@@ -41,33 +41,33 @@ truncation_symbol = "…/"
 # similar to mapped_locations in Oh My Posh:
 [directory.substitutions]
 "Documents" = "󰈙"
-"Downloads" = " "
-"Music"     = " "
-"Pictures"  = " "
+"Downloads" = ""
+"Music"     = ""
+"Pictures"  = ""
 # Keep in mind that the order matters. For example:
-# "Important Documents" = "  "
+# "Important Documents" = " 󰈙"
 # will not be replaced, because "Documents" was already substituted before.
 # So either put "Important Documents" before "Documents" or use the substituted version:
-# "Important  " = "  "
+# "Important 󰈙 " = " 󰈙"
 
 [git_branch]
-style = 'bg:#81986D bold white'
+style = 'bg:#7FBBB3 bold black'
 format = '[ on $symbol$branch(:$remote_branch)]($style)'
 
 [git_status]
-style = 'bg:#81986D bold white'
+style = 'bg:#7FBBB3 bold black'
 format = '([\[$all_status$ahead_behind\]]($style))'
 
 
 [time]
 disabled = true
 time_format = "%R" # Hour:Minute Format
-style = "bg:#E67E80 bold white"
+style = "bg:#E67E80 bold black"
 format = '[🕑️ $time]($style)'
 
 [status]
 disabled = false
 symbol = '✖'
 success_symbol = '✔'
-style = "bg:#E67E80 bold"
+style = "bg:#E67E80 bold black"
 format = "[ $symbol]($style)"
