@@ -24,12 +24,13 @@ command = "clippy"
 
 [[language]]
 name = "java"
-language-servers = ["jdtls"]
 indent = { tab-width = 4, unit = "    " }
 
-[language-server.jdtls.config.java.jdt.ls.java]
-home = '/usr/lib/jvm/java-17-openjdk'
 
+[[language]]
+name = "c"
+indent = { tab-width = 4, unit = "    " }
+auto-format = true
 
 [[language]]
 name = "cpp"
@@ -38,7 +39,6 @@ auto-format = true
 
 [language.formatter]
 command = "clang-format"
-
 
 [[language]]
 name = "arduino"
@@ -49,21 +49,28 @@ comment-token = "//"
 roots = ["sketch.yaml"]
 language-servers = ["arduino-language-server"]
 indent = { tab-width = 4, unit = "    " }
+auto-format = true
+
+[[grammar]]
+name = "cpp"
+source = { git = "https://github.com/tree-sitter/tree-sitter-cpp", rev = "a90f170f92d5d70e7c2d4183c146e61ba5f3a457" }
+
+[[grammar]]
+name = "arduino"
+source = { git = "https://github.com/ObserverOfTime/tree-sitter-arduino", rev = "db929fc6822b9b9e1211678d508f187894ce0345" }
 
 [language.formatter]
 command = "clang-format"
 
 [language-server.arduino-language-server]
 command = "arduino-language-server"
-args = ["-fqbn", "arduino:avr:uno"]
-
-[[grammar]]
-name = "arduino"
-source = { git = "https://github.com/ObserverOfTime/tree-sitter-arduino", rev = "db929fc6822b9b9e1211678d508f187894ce0345" }
 
 
 [[language]]
 name = "latex"
+
+[language.formatter]
+command = "latexindent"
 # auto-format = true
 
 [language-server.texlab.config.texlab.build]
@@ -73,10 +80,13 @@ args = [
   "-lualatex",
   "-f",
   "-output-directory=build",
-  "--synctex=1",
   "-interaction=nonstopmode",
-  "%f",
+  "-bibtex",
 ]
+
+[language-server.texlab.config.texlab.forwardSearch]
+executable = "zathura"
+args = ["--synctex-forward", "%l:1:%f", "%p"]
 
 [language-server.texlab.config.texlab.chktex]
 onEdit = true
