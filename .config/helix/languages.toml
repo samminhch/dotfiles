@@ -32,13 +32,12 @@ name = "c"
 indent = { tab-width = 4, unit = "    " }
 auto-format = true
 
+
 [[language]]
 name = "cpp"
 indent = { tab-width = 4, unit = "    " }
 auto-format = true
 
-[language.formatter]
-command = "clang-format"
 
 [[language]]
 name = "arduino"
@@ -51,6 +50,13 @@ language-servers = ["arduino-language-server"]
 indent = { tab-width = 4, unit = "    " }
 auto-format = true
 
+[language.formatter]
+command = "clang-format"
+
+[language-server.arduino-language-server]
+command = "arduino-language-server"
+
+
 [[grammar]]
 name = "cpp"
 source = { git = "https://github.com/tree-sitter/tree-sitter-cpp", rev = "a90f170f92d5d70e7c2d4183c146e61ba5f3a457" }
@@ -58,12 +64,6 @@ source = { git = "https://github.com/tree-sitter/tree-sitter-cpp", rev = "a90f17
 [[grammar]]
 name = "arduino"
 source = { git = "https://github.com/ObserverOfTime/tree-sitter-arduino", rev = "db929fc6822b9b9e1211678d508f187894ce0345" }
-
-[language.formatter]
-command = "clang-format"
-
-[language-server.arduino-language-server]
-command = "arduino-language-server"
 
 
 [[language]]
