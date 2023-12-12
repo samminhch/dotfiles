@@ -17,8 +17,8 @@
   "modules-right": [
     "tray",
     // "custom/media",
-    "bluetooth",
     "network",
+    "bluetooth",
     "backlight",
     "wireplumber",
   ],
@@ -90,9 +90,9 @@
     ]
   },
   "network": {
-    "format-wifi": "{icon} {essid}",
+    "format-wifi": "{icon}",
     "format-ethernet": "󱘖 Wired",
-    "tooltip-format": " {bandwidthDownBytes}  {bandwidthUpBytes}",
+    "tooltip-format": "{essid}  {bandwidthDownBytes}  {bandwidthUpBytes}",
     "format-linked": "󱘖 {ifname} (No IP)",
     "format-disconnected": "  Disconnected",
     "format-disabled": "󰤭 Disabled",
