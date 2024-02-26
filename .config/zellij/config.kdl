@@ -3,10 +3,17 @@
 
 theme "everforest-dark-medium" 
 copy_command "wl-copy"                    // wayland
+// default_layout "compact"
+default_mode "locked"
 pane_frames true
+
 ui {
     pane_frames {
         rounded_corners true
     }
 }
 
+keybinds {
+    normal {
+    }
+}
