@@ -1,7 +1,7 @@
 * {
   font-family: ComicShannsMono Nerd Font Propo;
   font-size: 18px;
-  color: #D3C6AA;
+  color: #d3c6aa;
 }
 
 window#waybar {
@@ -9,8 +9,8 @@ window#waybar {
 }
 
 tooltip {
-  background: #272E33;
-  border: 2px solid #D3C6AA;
+  background: #272e33;
+  border: 2px solid #d3c6aa;
   box-shadow: 0 0 2px 3px rgba(30, 35, 38, 0.35);
 }
 
@@ -24,9 +24,11 @@ tooltip {
 #network,
 #tray,
 #idle_inhibitor,
+#custom-notification,
 #clock,
 #window,
 #wireplumber,
+#pulseaudio,
 #bluetooth,
 #backlight,
 #custom-media,
@@ -42,11 +44,20 @@ tooltip {
 }
 
 /* Rounding only of left of module(s) */
-#idle_inhibitor,
 #tray {
-  border-radius: 20px 8px 8px 20px;
-  margin-right: 2px;
+  border-radius: 20px 0 0 20px;
   padding-left: 12px;
+}
+
+#idle_inhibitor {
+  border-radius: 20px 8px 8px 20px;
+  padding-right: 6px;
+}
+
+#custom-notification {
+  border-radius: 0 8px 8px 0;
+  margin-right: 0;
+  margin-left: 0;
 }
 
 #backlight {
@@ -54,7 +65,8 @@ tooltip {
   margin-left: 2px;
 }
 
-#bluetooth {
+#bluetooth,
+#custom-notification {
   border-radius: 0 8px 8px 0;
   margin-right: 2px;
 }
@@ -69,7 +81,8 @@ tooltip {
   border-radius: 8px 20px 20px 8px;
 }
 
-#wireplumber {
+#wireplumber,
+#pulseaudio {
   border-radius: 0 20px 20px 0;
 }
 
