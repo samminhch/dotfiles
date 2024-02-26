@@ -56,15 +56,6 @@ if command_exists -s paru; then
 
 fi
 
-# Default editor is helix
-if [ -f /usr/bin/hx ]; then
-    export EDITOR='hx'
-fi
-
-if [ -f /usr/bin/helix ]; then
-    export EDITOR='helix'
-fi
-
 # update alias!
 if command_exists -s powerpill paru; then
     alias update="sudo pacman -Sy && sudo powerpill -Su && paru -Su"
