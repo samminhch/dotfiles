@@ -4,6 +4,9 @@ A repo to house all of my linux configuration files.
 I just thought it would be really neat if I could just install a new distro,
 run this, and save hours setting up my desktop!
 
+> Warning!
+> This README isn't fully complete, I'll complete it when I have the free time :D
+
 ## Pre-Requisites
 
 - [ ] git
@@ -19,16 +22,13 @@ Additionally, there are config files for these packages:
 - [ ] ranger
 - [ ] wezterm
 - [ ] starship
-
+- [ ] hyprland
+      
 ### These will be set up for you in the bootstrap file
 
 - [ ] starship
-- [ ] FiraCode Nerd Font: ([AUR](https://archlinux.org/packages/community/any/ttf-firacode-nerd/), [REPO](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/FiraCode))
 - [ ] [RustUp](https://rustup.rs/)
     - [ ] cargo-binstall
-    - [ ] rtx-cli (for version management)
-        - nodejs@18
-    - [ ] bob-nvim (for neovim management)
     - [ ] zellij (terminal multiplexer)
 - [ ] oh-my-zsh
     - [ ] zsh-autosuggestions
