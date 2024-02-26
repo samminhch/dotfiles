@@ -12,9 +12,7 @@ wezterm.on("format-tab-title", function(tab, _, _, config, _, _)
         { Background = { Color = colors.tab } },
         { Foreground = { Color = colors.fg } },
         { Text = tab.active_pane.title },
-    }
-end)
-
+    } end)
 -- nvim zen mode support
 wezterm.on("user-var-changed", function(window, pane, name, value)
     local overrides = window:get_config_overrides() or {}
@@ -40,8 +38,11 @@ wezterm.on("user-var-changed", function(window, pane, name, value)
 end)
 
 return {
-    enable_wayland = false,
+    -- enable_wayland = false,
     hide_tab_bar_if_only_one_tab = true,
+    set_environment_variables = {
+        TERM = 'wezterm',
+    },
     window_background_opacity = 0.90,
     font = wezterm.font_with_fallback({
         -- {
@@ -57,6 +58,7 @@ return {
         "Noto Color Emoji", -- emoji fonts :D
     }),
     font_size = 14,
+    default_prog = { "/usr/bin/zellij" },
     color_scheme = "everforest",
     keys = {
         { key = "n", mods = "CTRL|ALT",   action = wezterm.action.ShowLauncher },
