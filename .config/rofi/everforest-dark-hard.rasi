@@ -48,7 +48,7 @@ inputbar {
 
 prompt {
   background-color: @fg-blue;
-  text-color: @bg-2;
+  text-color: var(bg-2);
   border: 4px;
   border-radius: 8px;
   padding: 2px 4px;
@@ -58,9 +58,9 @@ textbox-prompt-colon {
   enabled: true;
   padding: 5px 0px;
   expand: false;
-  str: "";
+  str: " 🔍";
   background-color: inherit;
-  text-color: @bg-2;
+  text-color: var(bg-2);
   margin: 4px 0 0 0;
 }
 
@@ -80,7 +80,7 @@ button {
   expand: false;
   border-radius: 8px;
   border: 0 0 5px 0;
-  border-color: @bg-blue;
+  border-color: var(bg-blue);
 }
 
 button selected {
@@ -91,8 +91,8 @@ button selected {
 entry {
   background-color: transparent;
   padding: 6px;
-  text-color: @bg-2;
-  placeholder-color: @gray-0;
+  text-color: var(bg-2);
+  placeholder-color: var(gray-0);
   margin: 4px 0 0 0;
 }
 
@@ -102,22 +102,22 @@ message {
   padding: 0px;
   border: 0px solid;
   border-radius: 0px 0px 0px 0px;
-  border-color: @fg-blue;
+  border-color: var(fg-blue);
   background-color: transparent;
-  text-color: @fg;
+  text-color: var(fg);
 }
 
 textbox {
   padding: 8px 10px;
   border: 0px solid;
   border-radius: 10px;
-  border-color: @fg-blue;
+  border-color: var(fg-blue);
   background-color: transparent;
-  text-color: @fg;
+  text-color: var(fg);
   vertical-align: 0.5;
   horizontal-align: 0.0;
   highlight: none;
-  placeholder-color: @fg;
+  placeholder-color: var(fg);
   blink: true;
   markup: true;
 }
@@ -138,33 +138,33 @@ element-icon {
   size: 2em;
   vertical-align: 0.5;
   background-color: transparent;
-  text-color: @fg;
+  text-color: var(fg);
 }
 
 element-text {
   vertical-align: 0.5;
   background-color: transparent;
-  text-color: @fg;
+  text-color: var(fg);
 }
 
 element normal urgent {
-  text-color: @fg-red;
+  text-color: var(fg-red);
 }
 
 element normal active {
-  text-color: @fg-green;
+  text-color: var(fg-green);
 }
 
 element selected {
-  background-color: @bg-green;
-  text-color: @bg-0;
+  background-color: var(bg-green);
+  text-color: var(bg-0);
   border-radius: 8px;
   border: 2px;
-  border-color: @fg-green;
+  border-color: var(fg-green);
 }
 
 element selected urgent {
-  background-color: @bg-red;
+  background-color: var(bg-red);
 }
 
 
