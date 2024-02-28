@@ -52,6 +52,7 @@ tooltip {
 #idle_inhibitor {
   border-radius: 20px 8px 8px 20px;
   padding-right: 6px;
+  margin-right: 2px;
 }
 
 #custom-notification {
