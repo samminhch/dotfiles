@@ -1,21 +1,66 @@
-print_error()
-{
-    local RED="\033[31m"
-    local RED_BOLD="\033[1;31m"
-    local RESET="\033[0m"
+print_log() {
+    colors=(
+        "31m"
+        "32m"
+        "33m"
+        "34m"
+    )
 
-    printf "%b[ERROR]%b " "$RED_BOLD" "$RED"
-    printf "%s%b\n" "$1" "$RESET"
+    idx=""
+    case "$1" in
+    "error")
+        idx=0
+        ;;
+    "okay")
+        idx=1
+        ;;
+    "warn")
+        idx=2
+        ;;
+    "info")
+        idx=3
+        ;;
+    *)
+        echo 'print_log(): value must be either "error", "okay", "warn", or  "info"'
+        exit 1
+        ;;
+    esac
+    # echo ${colors[${idx}]}
+    printf "%b[$(echo "$1" | tr '[:lower:]' '[:upper:]')]%b " "\033[1;${colors[${idx}]}" "\033[0;${colors[${idx}]}"
+    printf "%s%b\n" "$2" "\033[0m"
 }
 
-print_okay()
+command_exists()
 {
-    local GREEN="\033[32m"
-    local GREEN_BOLD="\033[1;32m"
-    local RESET="\033[0m"
+    local silent=false
 
-    printf "%b[OKAY]%b " "$GREEN_BOLD" "$GREEN"
-    printf "%s%b\n" "$1" "$RESET"
+    for cmd_name in "$@"; do
+        if [ "$cmd_name" = "-s" ] || [ "$cmd_name" = "--silent" ];
+        then
+            silent=true
+            continue
+        fi
+
+        command -v "$cmd_name" &> /dev/null
+        local cmd_status=$?
+
+        if [ "$cmd_status" -eq 0 ];
+        then
+            if [ "$silent" = false ];
+            then
+                print_log okay "$cmd_name is an executable"
+            fi
+        else
+            if [ "$silent" = false ];
+            then
+                print_log error "$cmd_name isn't an executable"
+            fi
+        fi
+
+        local overall_status=$(( overall_status > cmd_status ? overall_status : cmd_status ))
+    done
+
+    return $overall_status
 }
 
 req_link()
@@ -29,9 +74,9 @@ req_link()
         fi
 
         ln -s $2 $1
-        print_okay "$1 was linked to $2"
+        print_log okay "$1 was linked to $2"
     else
-        print_error "$1 was not linked to $2"
+        print_log error "$1 was not linked to $2"
     fi
 }
 

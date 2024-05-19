@@ -1,43 +1,65 @@
-# Path to your oh-my-zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
-
-# Uncomment one of the following lines to change the auto-update behavior
-# zstyle ':omz:update' mode disabled  # disable automatic updates
-# zstyle ':omz:update' mode auto      # update automatically without asking
-zstyle ':omz:update' mode reminder # just remind me to update when it's time
-
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Plugins
-plugins=(
-    gh
-    git
-    sudo
-    alias-finder
-    command-not-found
-    zsh-autosuggestions
-    zsh-syntax-highlighting
-)
-
-export ZSH_ALIAS_FINDER_PREFIX=💡
-source $ZSH/oh-my-zsh.sh
-
-# You may need to manually set your language environment
-export LANG=en_US.UTF-8
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-# [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
 # source custom shell files
-source $HOME/utils.sh
-source $HOME/vars.sh
-source $HOME/arduino-cli-completion.zsh
+source $HOME/.aliases.sh
+source $HOME/.externals.sh
+source $HOME/.environment.sh
+
+# Setup the directory we want to store zinit and its plugins
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+
+# Install zinit if it wasn't already installed
+if [ ! -d $ZINIT_HOME ]; then
+    mkdir -p "$(dirname $ZINIT_HOME)"
+    git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+fi
+
+source "${ZINIT_HOME}/zinit.zsh"
+
+# Load zinit plugins
+zinit light Aloxaf/fzf-tab
+zinit light jeffreytse/zsh-vi-mode
+zinit light zsh-users/zsh-completions
+zinit light zsh-users/zsh-autosuggestions
+zinit light zsh-users/zsh-syntax-highlighting
+
+# Load zinit snippets
+zinit snippet OMZP::git
+zinit snippet OMZP::sudo
+zinit snippet OMZP::alias-finder
+zinit snippet OMZP::command-not-found
+
+# History settings
+HISTSIZE=5000
+SAVEHIST=$HISTSIZE
+HISTFILE=$HOME/.zsh_history
+HISTDUP=erase
+setopt appendhistory
+setopt sharehistory
+setopt hist_ignore_space
+setopt hist_ignore_dups
+setopt hist_ignore_all_dups
+setopt hist_save_no_dups
+setopt hist_find_no_dups
+
+# Completions
+autoload -U compinit; compinit
+zinit cdreplay -q
+
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+zstyle ':completion:*' matcher-list 'm:{A-Z}={A-Za-z}'
+
+if [ -x /usr/bin/dircolors ]; then
+    zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+fi
+
+## Completions w/ fzf
+eval "$(fzf --zsh)"
+zstyle ':completion:*' meno no
+zstyle ':fzf-tab-complete:cd:*' fzf-preview 'ls --color $realpath'
 
 # Enable starship prompt
-eval "$(starship init zsh)"
-
-# default blinking cursor
-echo '\e[1 q'
+# Check that the function `starship_zle-keymap-select()` is defined.
+# xref: https://github.com/starship/starship/issues/3418
+type starship_zle-keymap-select >/dev/null || \
+  {
+    eval "$(starship init zsh)"
+  }
