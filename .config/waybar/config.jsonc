@@ -12,10 +12,10 @@
     "tray",
     "custom/notification",
     // "custom/media",
-    "network",
-    "bluetooth",
+    // "network",
+    // "bluetooth",
     "backlight",
-    "pulseaudio"
+    "pulseaudio",
   ],
   "hyprland/workspaces": {
     "format": "{icon}",
@@ -23,15 +23,15 @@
     "on-scroll-down": "hyprctl dispatch workspace e-1",
     "format-icons": {
       "active": "",
-      "default": ""
-    }
+      "default": "",
+    },
   },
   "idle_inhibitor": {
     "format": "{icon}",
     "format-icons": {
       "activated": "",
-      "deactivated": ""
-    }
+      "deactivated": "",
+    },
   },
   "clock": {
     "format": "󰥔 {:%H:%M}",
@@ -46,31 +46,32 @@
         "months": "<span color='#d3c6aa' background='#272e33'><b>{}</b></span>",
         "days": "<span color='#d3c6aa'>{}</span>",
         "weekdays": "<span color='#dbbc7f'><b>{}</b></span>",
-        "today": "<span color='#a7c080'><b><u>{}</u></b></span>"
-      }
+        "today": "<span color='#a7c080'><b><u>{}</u></b></span>",
+      },
     },
     "actions": {
       "on-click-right": "mode",
       "on-click-forward": "tz_up",
       "on-click-backward": "tz_down",
       "on-scroll-up": "shift_up",
-      "on-scroll-down": "shift_down"
-    }
+      "on-scroll-down": "shift_down",
+    },
   },
   "tray": {
     "icon-size": 18,
-    "spacing": 10
+    "spacing": 10,
+    "reverse-direction": true,
   },
   "battery": {
     "states": {
       "good": 95,
       "warning": 30,
-      "critical": 20
+      "critical": 20,
     },
     "format": "{icon} {capacity}%",
     "format-charging": " {capacity}%",
     "format-plugged": "  {capacity}%",
-    "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
+    "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
   },
   "network": {
     "format-wifi": "{icon}",
@@ -78,45 +79,45 @@
     "tooltip-format": "{essid}  {bandwidthDownBytes}  {bandwidthUpBytes}",
     "format-linked": "󱘖 {ifname} (No IP)",
     "format-disconnected": "  Disconnected",
-    "format-disabled": "󰤭 Disabled",
+    "format-disabled": "󰤭 ",
     "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
     "interval": 5,
-    "on-click-right": "sh ~/.config/rofi/scripts/wifi.sh"
+    "on-click-right": "sh ~/.config/rofi/scripts/wifi.sh",
   },
   "bluetooth": {
     "format": "󰂯",
-    "format_disabled": "󰂲",
-    "format_off": "󰂲",
+    "format-disabled": "󰂲",
+    "format-off": "󰂲",
     "format-connected": "󰂱 {num_connections}",
     "tooltip-format": "󰂯 {controller_alias}",
     "tooltip-format-connected": "󰂱 {device_enumerate}",
     "tooltip-format-enumerate-connected": "{device_alias}",
-    "on-click-right": "blueman-manager"
+    "on-click-right": "overskride",
   },
   "backlight": {
     "device": "intel_backlight",
     "format": "{icon} {percent}%",
-    "format-icons": ["󰃞", "󰃝", "󰃟", "󰃠"]
+    "format-icons": ["󰃞", "󰃝", "󰃟", "󰃠"],
   },
   "wireplumber": {
     "format": "{icon}{volume}%",
     "format-muted": "󰖁 {volume}%",
     "format-icons": [" ", " ", " "],
     "tooltip-format": "{icon}{node_name}",
-    "on-click-right": "pavucontrol"
+    "on-click-right": "pavucontrol",
   },
   "pulseaudio": {
     "format": "{icon}{volume}%",
     "format-muted": "󰖁 {volume}%",
     "format-icons": [" ", " ", " "],
     "tooltip-format": "{icon}{node_name}",
-    "on-click-right": "pavucontrol"
+    "on-click-right": "pavucontrol",
   },
   "custom/media": {
     "format": "{icon} {}",
     "format-icons": {
       "Playing": "",
-      "Paused": ""
+      "Paused": "",
     },
     "escape": true,
     "return-type": "json",
@@ -126,7 +127,7 @@
     "smooth-scrolling-threshold": 10, // This value was tested using a trackpad, it should be lowered if using a mouse.
     "on-scroll-up": "playerctl next",
     "on-scroll-down": "playerctl previous",
-    "exec": "$HOME/.config/waybar/scripts/mediaplayer.py 2> /dev/null" // Script in resources/custom_modules folder
+    "exec": "$HOME/.config/waybar/scripts/mediaplayer.py 2> /dev/null", // Script in resources/custom_modules folder
   },
   "custom/notification": {
     "tooltip": false,
@@ -139,13 +140,13 @@
       "inhibited-notification": "<span foreground='red'><sup></sup></span>",
       "inhibited-none": "󰂚",
       "dnd-inhibited-notification": "<span foreground='red'><sup></sup></span>",
-      "dnd-inhibited-none": ""
+      "dnd-inhibited-none": "",
     },
     "return-type": "json",
     "exec-if": "which swaync-client",
     "exec": "swaync-client -swb",
     "on-click": "swaync-client -t -sw",
     "on-click-right": "swaync-client -d -sw",
-    "escape": true
-  }
+    "escape": true,
+  },
 }
