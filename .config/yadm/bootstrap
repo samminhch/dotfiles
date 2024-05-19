@@ -2,7 +2,7 @@
 
 pkg_manager=""
 supported_pkg_managers=("pacman" "apt")
-dependencies=("yadm"
+dependencies=(
     "bc"
     "fzf"
     "git"
@@ -10,6 +10,7 @@ dependencies=("yadm"
     "zsh"
     "curl"
     "wget"
+    "yadm"
     "unzip"
     "nvim"
     "starship"
