@@ -56,14 +56,9 @@ command = "clang-format"
 [language-server.arduino-language-server]
 command = "arduino-language-server"
 
-
-[[grammar]]
-name = "cpp"
-source = { git = "https://github.com/tree-sitter/tree-sitter-cpp", rev = "a90f170f92d5d70e7c2d4183c146e61ba5f3a457" }
-
 [[grammar]]
 name = "arduino"
-source = { git = "https://github.com/ObserverOfTime/tree-sitter-arduino", rev = "db929fc6822b9b9e1211678d508f187894ce0345" }
+source = { git = "https://github.com/ObserverOfTime/tree-sitter-arduino", rev = "94219a5ac207a0fadd680b285378d08669d5bbc8" }
 
 
 [[language]]
@@ -81,7 +76,10 @@ args = [
   "-f",
   "-output-directory=build",
   "-interaction=nonstopmode",
-  "-bibtex",
+  "--shell-escape",
+  "-enable-write18",
+  "--synctex=1",
+  "%f"
 ]
 
 [language-server.texlab.config.texlab.forwardSearch]
@@ -115,7 +113,3 @@ auto-format = true
 
 [language-server.mdpls]
 command = "mdpls" # enable if editing wiki markdown files 
-
-# [language.formatter]
-# command = "dprint"
-# args = ["fmt", "--stdin", "md"]
