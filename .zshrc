@@ -16,7 +16,8 @@ plugins=(
     gh
     git
     sudo
-    zsh-alias-finder
+    alias-finder
+    command-not-found
     zsh-autosuggestions
     zsh-syntax-highlighting
 )
@@ -33,6 +34,7 @@ export LANG=en_US.UTF-8
 # source custom shell files
 source $HOME/utils.sh
 source $HOME/vars.sh
+source $HOME/arduino-cli-completion.zsh
 
 # Enable starship prompt
 eval "$(starship init zsh)"
