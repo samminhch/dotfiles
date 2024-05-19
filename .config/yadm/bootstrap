@@ -1,151 +1,184 @@
 #! /usr/bin/bash
 
-dependencies=("git" "pip" "pipenv" "zsh" "curl" "wget" "unzip" "tmux" "fzf" "bc")
+pkg_manager=""
+supported_pkg_managers=("pacman" "apt")
+dependencies=("yadm"
+    "bc"
+    "fzf"
+    "git"
+    "npm"
+    "zsh"
+    "curl"
+    "wget"
+    "unzip"
+    "nvim"
+    "starship"
+    "tree-sitter"
+)
+manual_install_fonts_warning=false
 
-print_error()
-{
-    local RED="\033[31m"
-    local RED_BOLD="\033[1;31m"
-    local RESET="\033[0m"
+#####################
+# UTILITY FUNCTIONS #
+#####################
 
-    printf "%b[ERROR]%b " "$RED_BOLD" "$RED"
-    printf "%s%b\n" "$1" "$RESET"
-}
+# $1 must be either "error", "okay", "warn", or "info"
+print_log() {
+    colors=(
+        "31m"
+        "32m"
+        "33m"
+        "34m"
+    )
 
-print_warn()
-{
-    local YELLOW="\033[33m"
-    local YELLOW_BOLD="\033[1;33m"
-    local RESET="\033[0m"
-
-    printf "%b[WARN]%b " "$YELLOW_BOLD" "$YELLOW"
-    printf "%s%b\n" "$1" "$RESET"
-}
-
-print_okay()
-{
-    local GREEN="\033[32m"
-    local GREEN_BOLD="\033[1;32m"
-    local RESET="\033[0m"
-
-    printf "%b[OKAY]%b " "$GREEN_BOLD" "$GREEN"
-    printf "%s%b\n" "$1" "$RESET"
-}
-
-exit_program() {
+    idx=""
     case "$1" in
-        1)
-            print_error "$2 is required for bootstrap to work. Here are the dependencies required for bootstrap:"
-            for dependency in "${dependencies[@]}";
-            do
-                echo -e "\t${dependency}\n"
-            done
-            ;;
-        *)
-            print_error "invalid exit code: $1"
+    "error")
+        idx=0
+        ;;
+    "okay")
+        idx=1
+        ;;
+    "warn")
+        idx=2
+        ;;
+    "info")
+        idx=3
+        ;;
+    *)
+        echo 'print_log(): value must be either "error", "okay", "warn", or  "info"'
+        exit 1
+        ;;
     esac
-    
-    echo 'If you are able to, please run ~/.config/yadm/bootstrap once you have finished fixing your errors'
-    exit 1
+    # echo ${colors[${idx}]}
+    printf "%b[$(echo "$1" | tr '[:lower:]' '[:upper:]')]%b " "\033[1;${colors[${idx}]}" "\033[0;${colors[${idx}]}"
+    printf "%s%b\n" "$2" "\033[0m"
 }
 
-command_exists() 
-{
-    for cmd_name in "$@"; do
-        command -v "$cmd_name" >/dev/null
-        cmd_status=$?
+array_contains() {
+    local key="$1"
+    shift
+    local arr=("$@")
 
-        if [ "$cmd_status" -eq 0 ];
-        then
-            print_okay "$cmd_name is an executable"
-        else
-            print_error "$cmd_name isn't an executable"
+    for val in "${arr[@]}"; do
+        if [ "$key" = "$val" ]; then
+            return 0
         fi
-
-        overall_status=$(( overall_status > cmd_status ? overall_status : cmd_status ))
     done
 
-    return $overall_status
+    return 1
 }
 
-# make sure that all dependencies are installed
-if ! command_exists git zsh pip curl wget unzip pipenv tmux fzf bc;
-then
-    exit_program 2
+#########################
+# START OF MAIN PROGRAM #
+#########################
+
+# Find package manager
+for pkg_man in "${supported_pkg_managers[@]}"; do
+    command -v $pkg_man &>/dev/null
+    if [ "$?" -eq 0 ]; then
+        pkg_manager=$pkg_man
+    fi
+done
+
+# Find missing dependencies, if any
+missing_deps=()
+for dependency in "${dependencies[@]}"; do
+    if ! command -v $dependency &>/dev/null; then
+        missing_deps+=$dependency
+    fi
+done
+
+# Install missing dependencies, if any
+if [ ${#missing_deps[@]} != 0 ]; then
+    print_log info "Found missing dependencies: ${missing_deps[@]}. Installing " \
+        "them using $pkg_manager"
+
+    case "$pkg_manager" in
+    "apt")
+        sudo apt update
+        if [ "$?" -eq 1 ]; then
+            print_log error "Exited during installation..."
+            exit 1;
+        fi
+        sudo apt upgrade
+        if [ "$?" -eq 1 ]; then
+            print_log error "Exited during installation..."
+            exit 1;
+        fi
+
+        non_apt_packages=(
+            "starship"
+        )
+
+        # custom install for non-apt packages
+        if [ $(array_contains "starship" ${missing_deps[@]}) -eq 1 ]; then
+            print_info "Installing starship prompt..."
+            curl -sS https://starship.rs/install.sh | sh -s -- -y
+            print_okay "Starship installed!"
+        fi
+
+        for package in ${non_apt_packages}; do
+            missing_deps=("${missing_deps[@]/$package/}")
+        done
+
+        sudo apt --assume-yes install ${missing_deps[@]}
+        if [ "$?" -eq 1 ]; then
+            print_log error "Exited during installation..."
+            exit 1;
+        fi
+        ;;
+    "pacman")
+        sudo pacman -Syyu --noconfirm ${missing_deps[@]}
+        if [ "$?" -eq 1 ]; then
+            print_log error "Exited during installation..."
+            exit 1;
+        fi
+        ;;
+    *)
+        print_log error "System isn't supported. Please install those " \
+            "manually, and then rerun the script"
+        exit 1
+        ;;
+    esac
 fi
 
-print_warn "Stashing current configs..."
-# stash current config in yadm
+print_log okay "Dependencies are installed!"
+
+print_log info "Installing ComicShannsMono, Comic Sans MS, and Abril Fatface"
+case "$pkg_manager" in
+"pacman")
+    sudo pacman -Syyu --noconfirm ttf-abril-fatface-google-fonts \
+        otf-comicshanns-nerd ttf-comic-sans
+        if [ "$?" -eq 1 ]; then
+            print_log error "Exited during installation..."
+            exit 1;
+        fi
+    ;;
+*)
+    git clone --filter=blob:none --sparse git@github.com:ryanoasis/nerd-fonts
+    cd nerd-fonts
+    git sparse-checkout add patched-fonts/ComicShannsMono
+    ./install.sh
+    cd -
+
+    manual_install_fonts_warning=true
+    ;;
+esac
+
+print_log info "Stashing current configs..."
 $(which yadm) stash
-print_okay "Current configs stashed!"
+print_log okay "Current configs stashed!"
+print_log info "You can recover your old configs with 'yadm stash pop'"
 
-# Install FiraCode Nerd Font
-print_warn "Installing the FiraCode Nerd Font..."
-git clone --filter=blob:none --sparse https://github.com/ryanoasis/nerd-fonts
-cd nerd-fonts
-git sparse-checkout add patched-fonts/FiraCode
-./install.sh FiraCode
-cd - # switch back to prev directory
-print_okay "Font installed!"
+printf "%s\n" """
+█▀ █▀▀ ▀█▀ █ █ █▀█   █▀▀ █▀█ █▀▄▀█ █▀█ █   █▀▀ ▀█▀ █▀▀
+▄█ ██▄  █  █▄█ █▀▀   █▄▄ █▄█ █ ▀ █ █▀▀ █▄▄ ██▄  █  ██▄
+──────────────────────────────────────────────────────
+"""
 
-# starship prompt for bash & other shells 😊
-print_warn "Installing starship prompt..."
-curl -sS https://starship.rs/install.sh | sh -s -- -y
-print_okay "starship installed!"
-
-# rustup installation
-print_warn "Installing rustup..."
-curl https://sh.rustup.rs -sSf | sh -s -- -y
-print_okay "starship installed!"
-
-# cargo install packages
-print_warn "Installing cargo-binstall. This will take a moment..."
-$HOME/.cargo/bin/cargo install --quiet cargo-binstall
-print_okay "cargo-binstall installed!"
-
-print_warn "Installing rtx-cli..."
-$HOME/.cargo/bin/cargo-binstall -y rtx-cli 
-print_okay "rtx-cli installed!"
-
-print_warn "Installing bob-nvim..."
-$HOME/.cargo/bin/cargo-binstall -y bob-nvim
-print_okay "bob-nvim installed!"
-
-print_warn "Installing zellij..."
-$HOME/.cargo/bin/cargo-binstall -y zellij
-print_okay "zellij installed!"
-
-# use specified nodejs version
-print_warn "Installing $nodejs_version via rtx-cli..."
-$HOME/.cargo/bin/rtx install "$nodejs_version"
-$HOME/.cargo/bin/rtx install "$node_version"
-$HOME/.cargo/bin/rtx global "$nodejs_version"
-$HOME/.cargo/bin/rtx global "$node_version"
-print_okay "$nodejs_version installed!"
-
-# use the latest stable neovim version
-print_warn "Installing NeoVim ${bob_nvim_version} via bob-nvim..."
-$HOME/.cargo/bin/bob use $bob_nvim_version
-print_okay "NeoVim $bob_nvim_version installed!"
-
-# install oh-my-zsh
-print_warn "Installing oh-my-zsh"
-wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
-sh install.sh --keep-zshrc --unattended
-rm install.sh
-print_okay "oh-my-zsh installed!"
-
-print_warn "Installing zsh-autosuggestions and zsh-syntax-highlighting..."
-git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-print_okay "Installed!"
-
-# install tmux plugin manager
-print_warn "Installing tmux plugin manager..."
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-print_okay "Installed!"
-
-printf "%s\n" "█▀ █▀▀ ▀█▀ █ █ █▀█   █▀▀ █▀█ █▀▄▀█ █▀█ █   █▀▀ ▀█▀ █▀▀" \
-              "▄█ ██▄  █  █▄█ █▀▀   █▄▄ █▄█ █ ▀ █ █▀▀ █▄▄ ██▄  █  ██▄" \
-              "──────────────────────────────────────────────────────"  \
-              "Go ahead and reload your shell, and you should be good to go\!"
+if [ "$manual_install_fonts_warning" = true ]; then
+    print_log warn "You're going to have to install \"Comic Sans MS\" and " \
+        "\"Abril Fatface\" on your own."
+else
+    echo "Go ahead and reload your shell, and you should be good to go\!"
+fi
