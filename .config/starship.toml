@@ -1,15 +1,19 @@
 format = """
 [┌](fg:bold white)\
-[](#A7C080)\
+[](green)\
 $username$hostname\
-[](bg:#DBBC7F fg:#A7C080)\
+[](bg:blue green)\
 $directory\
-[](fg:#DBBC7F bg:#7FBBB3)\
+[](blue)\
+$fill\
+[](fg:blue)\
 $git_branch\
 $git_status\
-[](fg:#7FBBB3 bg:#E67E80)\
+[](fg:blue bg:red)\
 $status\
-[ ](fg:#E67E80)
+[](fg:red bg:yellow)\
+$cmd_duration\
+[](yellow)
 [└─󰛿 ](fg:bold white)\
 """
 
@@ -19,21 +23,21 @@ $status\
 # You can also replace your username with a neat symbol like  to save some space
 [username]
 show_always = true
-style_user  = "bg:#A7C080 bold black"
-style_root  = "bg:#A7C080 bold black"
+style_user  = "bg:green bold black"
+style_root  = "bg:green bold black"
 format      = '[$user]($style)'
 
 [hostname]
-style      = "bg:#A7C080 bold black"
+style      = "bg:green bold black"
 ssh_only   = false
-ssh_symbol = " "
-format     = '[$ssh_symbol@$hostname](bold black bg:#A7C080)'
+ssh_symbol = "/ "
+format     = '[@$hostname$ssh_symbol](bold black bg:green)'
 trim_at    = '.companyname.com'
 disabled   = false
 
 
 [directory]
-style             = "bg:#DBBC7F bold black"
+style             = "bg:blue bold black"
 format            = "[ $path ]($style)"
 truncation_length = 3
 truncation_symbol = "…/"
@@ -48,27 +52,24 @@ read_only         = "󰌾"
 "Pictures"  = " "
 
 [git_branch]
-style  = 'bg:#7FBBB3 bold black'
-format = '[ on $symbol$branch(:$remote_branch)]($style)'
+style  = "bg:blue bold black"
+format = "[on $symbol$branch(:$remote_branch)]($style)"
 symbol = " "
 
 [git_status]
-style = 'bg:#7FBBB3 bold black'
+style = "bg:blue bold black"
 format = '([\[$all_status$ahead_behind\]]($style))'
 
-
-[time]
-disabled = true
-time_format = "%R" # Hour:Minute Format
-style = "bg:#E67E80 bold black"
-format = '[🕑️ $time]($style)'
+[cmd_duration]
+min_time = 250
+style = "bg:yellow bold black"
+format = "[ $duration]($style)"
 
 [status]
 disabled = false
 symbol = '✖'
-success_symbol = '✔'
-style = "bg:#E67E80 bold black"
-format = "[ $symbol]($style)"
+style = "bg:red bold black"
+format = "[$symbol]($style)"
 
 [aws]
 symbol = "  "
