@@ -45,20 +45,11 @@ return {
     },
     window_background_opacity = 0.90,
     font = wezterm.font_with_fallback({
-        -- {
-        --     family = "Monaspace Neon",
-        --     harfbuzz_features = { "ss01=1", "ss02=1", "ss03=1", "ss04=1", "ss05=1", "ss07=1", "calt=1" },
-        -- },
-        -- {
-        --     family = "Intel One Mono",
-        --     harfbuzz_features = { "ss11=1" }
-        -- },
         "ComicShannsMono Nerd Font",
         "Symbols Nerd Font",
         "Noto Color Emoji", -- emoji fonts :D
     }),
     font_size = 14,
-    default_prog = { "/usr/bin/zellij" },
     color_scheme = "everforest",
     keys = {
         { key = "n", mods = "CTRL|ALT",   action = wezterm.action.ShowLauncher },
