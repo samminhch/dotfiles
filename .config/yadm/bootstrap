@@ -1,9 +1,6 @@
 #! /usr/bin/bash
 
 dependencies=("git" "pip" "pipenv" "zsh" "curl" "wget" "unzip" "tmux" "fzf" "bc")
-nodejs_version="nodejs@18.16.0"
-node_version="node@18.16.0"
-bob_nvim_version="latest"
 
 print_error()
 {
@@ -39,7 +36,7 @@ exit_program() {
     case "$1" in
         1)
             print_error "$2 is required for bootstrap to work. Here are the dependencies required for bootstrap:"
-            for dependency in "$(dependencies[@])";
+            for dependency in "${dependencies[@]}";
             do
                 echo -e "\t${dependency}\n"
             done
