@@ -1,0 +1,37 @@
+#################
+# DEFAULT SHELL #
+#################
+command = /usr/bin/nu
+
+###############
+# KEYBINDINGS #
+###############
+
+# Splits
+keybind = unconsumed:ctrl+shift+h=goto_split:left
+keybind = unconsumed:ctrl+shift+l=goto_split:right
+keybind = unconsumed:ctrl+shift+j=goto_split:bottom
+keybind = unconsumed:ctrl+shift+k=goto_split:top
+
+keybind = unconsumed:ctrl+shift+backslash=new_split:right
+keybind = unconsumed:ctrl+shift+minus=new_split:down
+
+# Tabs
+keybind = ctrl+alt+tab=toggle_tab_overview
+
+
+##############
+# APPEARANCE #
+##############
+
+# Window Decorations
+window-decoration = false
+
+# Fonts
+
+# font-family = ComicShannsMono Nerd Font Propo
+font-family = Maple Mono NF
+font-size = 18
+
+theme = evergarden-winter-aqua.conf
+# theme = everforest-dark-hard.conf
