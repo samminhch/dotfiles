@@ -1,0 +1,13 @@
+[Unit]
+PartOf=graphical-session.target
+After=graphical-session.target
+Requisite=graphical-session.target
+
+[Service]
+ExecCondition=/lib/systemd/systemd-xdg-autostart-condition "Hyprland:niri" ""
+ExecStart=/usr/bin/swaync
+Restart=on-failure
+Slice=app-graphical.slice
+
+[Install]
+WantedBy=graphical-session.target

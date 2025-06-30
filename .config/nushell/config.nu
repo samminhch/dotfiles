@@ -31,6 +31,8 @@ let segment_colors = {
     error: red
 }
 
+# Set delay to get the final terminal size
+sleep 0.125sec
 $env.PROMPT_COMMAND = {||
     let dir = match (do -i { $env.PWD | path relative-to $nu.home-path }) {
         null => $env.PWD
@@ -40,40 +42,55 @@ $env.PROMPT_COMMAND = {||
 
     let user_segment = do $pill_text $"($env.USER)@(sys host | get hostname)" {fg: black, bg: $segment_colors.user}
     let path_segment = do $pill_text $dir {fg: black, bg: $segment_colors.dir}
-    return $"(ansi reset)╭($user_segment)─($path_segment)─┤\n╰─"
-}
+    let left_segment = $"╭($user_segment)─($path_segment)" | str trim
+    let left_segment_length = $left_segment | str replace --all --regex "\\x1b\\[[0-9;]*m" "" | str length -g
 
-$env.PROMPT_COMMAND_RIGHT = {||
     let git_segment = if (git status ^ null | complete | get exit_code | $in == 0) {
-        [
-            (do $pill_text $"(git branch --show-current)" {fg:black, bg: $segment_colors.git}),
-            "-"
-        ] | str join
+        do $pill_text $"(git branch --show-current)" {fg:black, bg: $segment_colors.git}
     } else {""}
 
     let time_segment = do $pill_text (date now | format date '%T') {fg: black, bg: $segment_colors.time}
     let error_segment = if ($env.LAST_EXIT_CODE != 0) {
-        [
-            (do $pill_text ($env.LAST_EXIT_CODE | into string) {fg: black, bg: $segment_colors.error})
-            "─"
-        ] | str join
+        do $pill_text ($env.LAST_EXIT_CODE | into string) {fg: black, bg: $segment_colors.error}
     } else { "" }
 
-    return (
+    let right_segment = (
         [
-            $"(ansi reset)├─"
-            $"($error_segment)($git_segment)($time_segment)"
+            $error_segment (if (($error_segment | str length) > 0) {"─"} else {""})
+            $git_segment (if (($git_segment | str length) > 0) {"─"} else {""})
+            $time_segment
             (if ($env.TERM == "linux") {"─*"} else {"─"})
         ] | str join
     )
+
+    return (
+        [
+            (ansi reset)
+            $left_segment
+            ($"($right_segment)" | fill -a "r" -c "─" -w ((term size).columns - ($left_segment_length)))
+            "\n╰─"
+        ] | str join
+    )
 }
+
+$env.PROMPT_COMMAND_RIGHT = ""
 
 $env.PROMPT_INDICATOR = if ($env.TERM == "linux") {"> "} else {" "}
 $env.PROMPT_INDICATOR_VI_NORMAL = $"(ansi cyan)($env.PROMPT_INDICATOR)(ansi reset)"
 $env.PROMPT_INDICATOR_VI_INSERT = $"(ansi white)($env.PROMPT_INDICATOR_VI_NORMAL)(ansi reset)"
 
-$env.TRANSIENT_PROMPT_COMMAND = ""
-$env.TRANSIENT_PROMPT_INDICATOR = $env.PROMPT_INDICATOR
+            
+$env.TRANSIENT_PROMPT_COMMAND = { ||
+    ([
+        (ansi reset) "╭"
+        (
+            (if ($env.TERM == "linux") {"─*\n╰─"} else {$"─\n╰─"})
+            | fill -a "r" -c "─" -w ((term size).columns + 2)
+        )
+        ""
+    ] | str join)  
+}
+$env.TRANSIENT_PROMPT_INDICATOR           = $env.PROMPT_INDICATOR
 $env.TRANSIENT_PROMPT_INDICATOR_VI_NORMAL = $"(ansi cyan)($env.TRANSIENT_PROMPT_INDICATOR)(ansi reset)"
 $env.TRANSIENT_PROMPT_INDICATOR_VI_INSERT = $"(ansi white)($env.TRANSIENT_PROMPT_INDICATOR_VI_NORMAL)(ansi reset)" 
 

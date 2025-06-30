@@ -1,0 +1,15 @@
+[Unit]
+Description=Bluetooth applet
+Documentation=man:blueman-applet
+# order startup after WM
+After=graphical-session.target
+
+[Service]
+Type=exec
+ExecCondition=/lib/systemd/systemd-xdg-autostart-condition "Hyprland:niri" ""
+ExecStart=/usr/bin/blueman-applet
+Restart=on-failure
+Slice=app-graphical.slice
+
+[Install]
+WantedBy=graphical-session.target
