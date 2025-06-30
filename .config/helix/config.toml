@@ -1,0 +1,33 @@
+theme = "evergarden_winter_aqua"
+
+[editor]
+line-number             = "relative"
+popup-border            = "all"
+end-of-line-diagnostics = "hint"
+color-modes = true
+
+[editor.lsp]
+display-inlay-hints = true
+
+[editor.cursor-shape]
+insert = "bar"
+select = "underline"
+
+[editor.auto-save.after-delay]
+enable = true
+
+[editor.whitespace]
+render = "all"
+
+[editor.indent-guides]
+render = true
+character = "╎"
+
+[editor.soft-wrap]
+enable            = true
+max-wrap          = 25 # increase value to reduce forced mid-word wrapping
+max-indent-retain = 0
+
+[editor.inline-diagnostics]
+cursor-line = "warning"
+
