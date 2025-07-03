@@ -31,7 +31,7 @@ window-decoration = false
 
 # font-family = ComicShannsMono Nerd Font Propo
 font-family = Maple Mono NF
-font-size = 18
+font-size = 16
 
 theme = evergarden-winter-aqua.conf
 # theme = everforest-dark-hard.conf
